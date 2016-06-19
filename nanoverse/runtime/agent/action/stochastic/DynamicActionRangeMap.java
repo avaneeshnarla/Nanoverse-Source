@@ -52,7 +52,7 @@ public class DynamicActionRangeMap {
         valueMap = new ActionRangeMap(functionMap.size());
         functionMap.forEach((action, supplier) -> {
             double value = supplier.get();
-            System.out.println(value);
+            //System.out.println(value);
             valueMap.add(action, value);
         });
     }
