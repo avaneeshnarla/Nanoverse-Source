@@ -34,7 +34,7 @@ public class NormalizedDynamicActionRangeMap extends DynamicActionRangeMap {
 //            throw new IllegalStateException("Total probability exceeds 1.0 " +
 //                "in normalized stochastic choice. Did you mean to use a " +
 //                "weighted stochastic choice?");
-            throw new ProbabilityExceededEvent();
+          throw new ProbabilityExceededEvent();
         }
 
         double complement = 1.0 - weight;
