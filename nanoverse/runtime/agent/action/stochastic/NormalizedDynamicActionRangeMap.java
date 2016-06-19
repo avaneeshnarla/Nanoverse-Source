@@ -2,6 +2,8 @@ package nanoverse.runtime.agent.action.stochastic;
 
 import nanoverse.runtime.agent.Agent;
 import nanoverse.runtime.agent.action.*;
+import nanoverse.runtime.control.halt.HaltCondition;
+import nanoverse.runtime.control.halt.ProbabilityExceededEvent;
 import nanoverse.runtime.layers.LayerManager;
 
 import java.util.Map;
@@ -20,18 +22,19 @@ public class NormalizedDynamicActionRangeMap extends DynamicActionRangeMap {
     }
 
     @Override
-    public void refresh() {
+    public void refresh() throws HaltCondition{
         super.refresh();
         normalize();
     }
 
-    private void normalize() {
+    private void normalize() throws HaltCondition{
         double weight = getTotalWeight();
 
         if (getTotalWeight() > 1.0) {
-            throw new IllegalStateException("Total probability exceeds 1.0 " +
-                "in normalized stochastic choice. Did you mean to use a " +
-                "weighted stochastic choice?");
+//            throw new IllegalStateException("Total probability exceeds 1.0 " +
+//                "in normalized stochastic choice. Did you mean to use a " +
+//                "weighted stochastic choice?");
+            throw new ProbabilityExceededEvent();
         }
 
         double complement = 1.0 - weight;

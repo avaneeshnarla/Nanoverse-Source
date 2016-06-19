@@ -22,6 +22,7 @@ package nanoverse.runtime.agent.action.stochastic;
 
 import nanoverse.runtime.agent.Agent;
 import nanoverse.runtime.agent.action.*;
+import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.layers.LayerManager;
 
 import java.util.*;
@@ -48,7 +49,7 @@ public class DynamicActionRangeMap {
         this.layerManager = layerManager;
     }
 
-    public void refresh() {
+    public void refresh() throws HaltCondition {
         valueMap = new ActionRangeMap(functionMap.size());
         functionMap.forEach((action, supplier) -> {
             double value = supplier.get();
