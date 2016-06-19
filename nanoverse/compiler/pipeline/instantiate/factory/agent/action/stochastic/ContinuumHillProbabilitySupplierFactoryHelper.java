@@ -29,10 +29,6 @@ public class ContinuumHillProbabilitySupplierFactoryHelper {
             coefficient, double offset, double halfpoint, double maximum,
                                                             LayerManager
             layerManager) {
-        System.out.println("Offset = "+offset+
-                "\nCoefficient = "+coefficient+
-                "\nHalfpoint = " +halfpoint+
-                "\nMaximum = "+maximum);
         return new ContinuumHillProbabilitySupplierDescriptor(layer,
                 coefficient,
                 offset, halfpoint, maximum, layerManager);

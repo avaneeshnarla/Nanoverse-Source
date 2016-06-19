@@ -68,10 +68,10 @@ public class ContinuumHillProbabilitySupplierLoader
         double coefficient = interpolator.coefficient(node, p.getRandom());
         factory.setCoefficient(coefficient);
 
-        double halfpoint = interpolator.coefficient(node, p.getRandom());
+        double halfpoint = interpolator.halfpoint(node, p.getRandom());
         factory.setHalfpoint(halfpoint);
 
-        double maximum = interpolator.coefficient(node, p.getRandom());
+        double maximum = interpolator.maximum(node, p.getRandom());
         factory.setMaximum(maximum);
 
         return factory.build();

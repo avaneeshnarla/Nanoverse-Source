@@ -29,7 +29,7 @@ import nanoverse.runtime.structural.annotations.FactoryTarget;
 import java.util.function.*;
 
 /**
- * Created by avaneesh on 18/06/2016.
+ * Created by avaneesh on 19/06/2016.
  */
 public class ContinuumHillProbabilitySupplierDescriptor extends
         ProbabilitySupplierDescriptor<ContinuumHillProbabilitySupplier> {
@@ -46,10 +46,6 @@ public class ContinuumHillProbabilitySupplierDescriptor extends
         Function<Agent, ContinuumHillProbabilitySupplier> constructor = cell ->
                 new ContinuumHillProbabilitySupplier(valueLookup,
                 cell, coefficient, offset, halfpoint, maximum);
-        System.out.println("Offset = "+offset+
-                "\nCoefficient = "+coefficient+
-                "\nHalfpoint = " +halfpoint+
-                "\nMaximum = "+maximum+"\n");
 
         super.setConstructor(constructor);
     }
@@ -61,7 +57,6 @@ public class ContinuumHillProbabilitySupplierDescriptor extends
                 .getLookupManager()
                 .getAgentLocation(cell);
 
-        double value = layerManager.getContinuumLayer(fieldName).getLinker().get(supplier);
-        return value;
+        return layerManager.getContinuumLayer(fieldName).getLinker().get(supplier);
     }
 }
