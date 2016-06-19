@@ -50,7 +50,7 @@ public class ContinuumHillLinProbabilitySupplierFactory implements
         this.layer = layer;
     }
 
-    public void setSubstrate(String layer) {
+    public void setSubstrate(String substrate) {
         this.substrate = substrate;
     }
 

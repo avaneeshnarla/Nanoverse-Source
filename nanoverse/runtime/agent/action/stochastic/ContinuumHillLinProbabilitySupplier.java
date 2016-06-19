@@ -74,12 +74,13 @@ public class ContinuumHillLinProbabilitySupplier extends ProbabilitySupplier {
         probability = (offset + Math.pow(value, coefficient)/
                 (Math.pow(value, coefficient)+Math.pow(halfpoint,
                         coefficient))*(maximum-offset))*substrate;
-//        System.out.println("Offset = "+offset+
-//                            "\nCoefficient = "+coefficient+
-//                            "\nHalfpoint = " +halfpoint+
-//                            "\nMaximum = "+maximum+
-//                            "\nValue = "+value+
-//                            "\nProbability = "+probability);
+        System.out.println("Offset = "+offset+
+                            "\nCoefficient = "+coefficient+
+                            "\nHalfpoint = " +halfpoint+
+                            "\nMaximum = "+maximum+
+                            "\nLayerValue = "+value+
+                            "\nProbability = "+probability+
+                            "\nSubstrateValue = "+substrate);
         logger.debug("p(x) = {}", probability);
         return probability;
     }

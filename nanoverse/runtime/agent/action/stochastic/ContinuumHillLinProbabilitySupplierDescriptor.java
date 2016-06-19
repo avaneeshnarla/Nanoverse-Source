@@ -42,7 +42,6 @@ public class ContinuumHillLinProbabilitySupplierDescriptor extends
                                                       double halfpoint,
                                                       double maximum,
                                                       LayerManager layerManager) {
-
         Function<Agent, Double> valueLookup = c -> getFieldValueAt(c, layerManager, layer);
         Function<Agent, Double> substrateLookup = c -> getFieldValueAt(c,
                 layerManager, substrate);

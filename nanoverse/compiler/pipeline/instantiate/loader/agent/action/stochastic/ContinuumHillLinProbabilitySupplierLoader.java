@@ -62,6 +62,9 @@ public class ContinuumHillLinProbabilitySupplierLoader
         String layerId = interpolator.layer(node);
         factory.setLayer(layerId);
 
+        String substrateId = interpolator.substrate(node);
+        factory.setSubstrate(substrateId);
+
         double offset = interpolator.offset(node, p.getRandom());
         factory.setOffset(offset);
 
