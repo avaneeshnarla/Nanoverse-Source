@@ -38,6 +38,7 @@ public class ProbabilitySupplierClassSymbolTable extends ClassSymbolTable<Probab
         continuum(ret);
         neighborhood(ret);
         continuumHill(ret);
+        continuumHillLin(ret);
         return ret;
     }
 
@@ -54,6 +55,14 @@ public class ProbabilitySupplierClassSymbolTable extends ClassSymbolTable<Probab
                 ContinuumHillProbabilitySupplierInstSymbolTable::new;
 
         ret.put("ContinuumHill", supplier);
+    }
+
+    private void continuumHillLin(HashMap<String,
+            Supplier<InstantiableSymbolTable>> ret) {
+        Supplier<InstantiableSymbolTable> supplier =
+                ContinuumHillProbabilitySupplierInstSymbolTable::new;
+
+        ret.put("ContinuumHillLin", supplier);
     }
 
     private void neighborhood(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
