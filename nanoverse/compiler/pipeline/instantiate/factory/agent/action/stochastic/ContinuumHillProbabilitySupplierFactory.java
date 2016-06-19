@@ -55,11 +55,11 @@ public class ContinuumHillProbabilitySupplierFactory implements
 
     public void setHalfpoint(double halfpoint) {
         this.halfpoint = halfpoint;
-    }
+        }
 
     public void setMaximum(double maximum) {
         this.maximum = maximum;
-    }
+        }
 
     public void setOffset(double offset) {
         this.offset = offset;
