@@ -60,7 +60,7 @@ public class ProbabilitySupplierClassSymbolTable extends ClassSymbolTable<Probab
     private void continuumHillLin(HashMap<String,
             Supplier<InstantiableSymbolTable>> ret) {
         Supplier<InstantiableSymbolTable> supplier =
-                ContinuumHillProbabilitySupplierInstSymbolTable::new;
+                ContinuumHillLinProbabilitySupplierInstSymbolTable::new;
 
         ret.put("ContinuumHillLin", supplier);
     }
