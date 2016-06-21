@@ -46,6 +46,7 @@ public class CoordinateSetClassSymbolTable extends ClassSymbolTable<CoordinateSe
         disc(ret);
         custom(ret);
         hline(ret);
+        // vline(ret);
         return ret;
     }
 
@@ -57,8 +58,7 @@ public class CoordinateSetClassSymbolTable extends ClassSymbolTable<CoordinateSe
     public void custom(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
         Supplier<InstantiableSymbolTable> supplier = () -> {
             ClassSymbolTable cst = new CoordinateClassSymbolTable();
-            ListSymbolTable<CustomSet> lst = new ListSymbolTable<>(cst, CustomCoordinateSetLoader::new);
-            return lst;
+            return new ListSymbolTable<CustomSet>(cst, CustomCoordinateSetLoader::new);
         };
         ret.put("Custom", supplier);
     }
