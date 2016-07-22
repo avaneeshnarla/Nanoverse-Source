@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.function.Supplier;
 
 /**
- * Created by dbborens on 7/22/2015.
+ * Created by avaneesh on 7/22/2016.
  */
 public class ActionClassSymbolTable extends ClassSymbolTable<ActionDescriptor> {
 
@@ -48,6 +48,7 @@ public class ActionClassSymbolTable extends ClassSymbolTable<ActionDescriptor> {
         compoundAction(ret);
         expand(ret);
         make(ret);
+        maketwo(ret);
         expandTo(ret);
         expandRandom(ret);
         expandWeighted(ret);
@@ -116,6 +117,13 @@ public class ActionClassSymbolTable extends ClassSymbolTable<ActionDescriptor> {
     private void make(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
         Supplier<InstantiableSymbolTable> supplier = MakeInstSymbolTable::new;
         ret.put("Make", supplier);
+    }
+
+    private void maketwo(HashMap<String, Supplier<InstantiableSymbolTable>>
+                                ret) {
+        Supplier<InstantiableSymbolTable> supplier =
+                MakeTwoInstSymbolTable::new;
+        ret.put("MakeTwo", supplier);
     }
 
     private void cloneTo(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
