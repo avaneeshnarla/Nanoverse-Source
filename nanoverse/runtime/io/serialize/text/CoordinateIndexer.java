@@ -47,6 +47,7 @@ public class CoordinateIndexer extends Serializer {
     public void init() {
         super.init();
         geometry = lm.getAgentLayer().getGeometry();
+        makeCoordinateMap();
     }
 
     @Override

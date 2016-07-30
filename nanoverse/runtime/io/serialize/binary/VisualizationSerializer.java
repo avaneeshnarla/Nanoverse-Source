@@ -66,12 +66,6 @@ public class VisualizationSerializer extends Serializer {
 
     @Override
     public void init() {
-        // Doesn't do anything
-    }
-
-
-    @Override
-    public void dispatchHalt(HaltCondition ex) {
 
         // Get expected fields.
         int[] highlightChannels = visualization.getHighlightChannels();
@@ -79,6 +73,13 @@ public class VisualizationSerializer extends Serializer {
         // Create a SystemStateReader.
 
         renderer.renderAll(highlightChannels);
+    }
+
+
+    @Override
+    public void dispatchHalt(HaltCondition ex) {
+        // Doesn't do anything
+
     }
 
     @Override
