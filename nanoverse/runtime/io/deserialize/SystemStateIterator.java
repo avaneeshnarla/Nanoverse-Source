@@ -28,6 +28,7 @@ import nanoverse.runtime.io.deserialize.continuum.ContinuumLayerViewer;
 import nanoverse.runtime.io.deserialize.continuum.ContinuumStateReader;
 import nanoverse.runtime.layers.LightweightSystemState;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -71,6 +72,7 @@ public class SystemStateIterator implements Iterator<LightweightSystemState> {
 
     public SystemStateIterator(int[] channelIds,
                              GeneralParameters p, Geometry geometry) {
+
         cursor = 0;
 
         String fileRoot = p.getInstancePath();
@@ -81,7 +83,7 @@ public class SystemStateIterator implements Iterator<LightweightSystemState> {
         TimeReader timeReader = new TimeReader(fileRoot);
         times = timeReader.getTimes();
         frames = timeReader.getFrames();
-
+        //System.out.println(Arrays.toString(times));
         // Open handle to data file for each highlght channel.
         highlightReader = new HighlightReader(fileRoot, channelIds, deindexer);
 

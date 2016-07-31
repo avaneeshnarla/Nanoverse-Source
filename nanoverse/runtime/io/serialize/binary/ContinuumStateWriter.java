@@ -76,6 +76,7 @@ public class ContinuumStateWriter extends Serializer {
     public void flush(StepState stepState) {
         extremaHelper.push(stepState);
         fileHelper.push(stepState);
+        extremaHelper.serialize();
     }
 
     public void init(CSWExtremaHelper extremaHelper,

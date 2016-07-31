@@ -52,6 +52,7 @@ public class VisualizationSerializer extends Serializer {
         super(p, lm);
         Geometry geometry = lm.getAgentLayer().getGeometry();
         this.visualization = visualization;
+        //System.out.println("Constructor 1 reached");
         renderer = new VisualizationFrameRenderer(visualization, geometry, p, prefix);
     }
 
@@ -59,26 +60,36 @@ public class VisualizationSerializer extends Serializer {
                                    LayerManager lm,
                                    Visualization visualization,
                                    VisualizationFrameRenderer renderer) {
+
         super(p, lm);
         this.renderer = renderer;
         this.visualization = visualization;
+        //System.out.println("Constructor 2 reached");
     }
 
     @Override
     public void init() {
 
-        // Get expected fields.
-        int[] highlightChannels = visualization.getHighlightChannels();
+    }
 
-        // Create a SystemStateReader.
+    public void commit(StepState state) {
 
-        renderer.renderAll(highlightChannels);
     }
 
 
     @Override
     public void dispatchHalt(HaltCondition ex) {
         // Doesn't do anything
+        int[] highlightChannels = visualization.getHighlightChannels();
+
+        // Create a SystemStateReader.
+        try {
+            renderer.renderAll(highlightChannels);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Oops! System hasn't started recording yet!");
+        }
 
     }
 
@@ -90,5 +101,15 @@ public class VisualizationSerializer extends Serializer {
     @Override
     public void flush(StepState stepState) {
         // Doesn't do anything
+        int[] highlightChannels = visualization.getHighlightChannels();
+
+        // Create a SystemStateReader.
+        try {
+            renderer.renderAll(highlightChannels, stepState);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Oops! System hasn't started recording yet!");
+        }
     }
 }

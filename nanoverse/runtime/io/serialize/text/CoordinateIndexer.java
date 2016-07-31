@@ -53,6 +53,7 @@ public class CoordinateIndexer extends Serializer {
     @Override
     public void dispatchHalt(HaltCondition ex) {
         // Writes coordinate map of model to disk
+        //System.out.println("Reached dispatch");
         makeCoordinateMap();
     }
 
@@ -87,6 +88,8 @@ public class CoordinateIndexer extends Serializer {
 
     @Override
     public void flush(StepState stepState) {
-
+        // Writes coordinate map of model to disk
+        //System.out.println("Reached flush");
+        makeCoordinateMap();
     }
 }

@@ -39,6 +39,7 @@ public class TimeReader {
     public TimeReader(String root) {
         String filename = FileConventions.TIME_FILENAME;
         String absolute = root + filename;
+        //System.out.println(absolute);
         DataInputStream stream = FileConventions.makeDataInputStream(absolute);
         loadData(stream);
     }

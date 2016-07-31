@@ -24,9 +24,13 @@ import nanoverse.runtime.control.GeneralParameters;
 import nanoverse.runtime.geometry.Geometry;
 import nanoverse.runtime.io.deserialize.SystemStateReader;
 import nanoverse.runtime.io.visual.Visualization;
+import nanoverse.runtime.layers.LightweightSystemState;
 import nanoverse.runtime.layers.SystemState;
+import nanoverse.runtime.processes.StepState;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.function.Function;
 
 /**
@@ -59,17 +63,106 @@ public class VisualizationFrameRenderer {
         this.readerMaker = readerMaker;
     }
 
-    public void renderAll(int[] highlightChannels) {
-        SystemStateReader reader = readerMaker.apply(highlightChannels);
+//    public void renderAll(int[] highlightChannels) {
+//        //System.out.println(Arrays.toString(highlightChannels));
+//        SystemStateReader reader = readerMaker.apply(highlightChannels);
+//        //System.out.println(Arrays.toString(reader.getFrames()));
+//        // Initialize the visualization to this simulation.
+//        visualization.init(geometry, reader.getTimes(), reader.getFrames());
+//
+//        // Scan through the frames...
+//        int count=0;
+//        System.out.println("Start count");
+//        try {
+//
+//            for (SystemState systemState : reader) {
+//                count++;
+//                System.out.println("Counting...");
+//                try {
+//                    render(systemState);
+//                } catch (Exception e) {
+//                    System.out.println(systemState.getFrame());
+//                }
+//            }
+//        }
+//        catch(Exception e)
+//        {
+//            System.out.println("Something wrong with looping");
+//        }
+//        System.out.println("We have "+count);
+//
+//        visualization.conclude();
+//    }
 
+    public void renderAll(int[] highlightChannels) {
+        //System.out.println(Arrays.toString(highlightChannels));
+        SystemStateReader reader = readerMaker.apply(highlightChannels);
+        //System.out.println(Arrays.toString(reader.getFrames()));
         // Initialize the visualization to this simulation.
         visualization.init(geometry, reader.getTimes(), reader.getFrames());
 
         // Scan through the frames...
-        for (SystemState systemState : reader) {
-            render(systemState);
-        }
+        int count=0;
+        //System.out.println("Start count");
+        SystemState lastState = null;
+        try {
 
+            for (SystemState systemState : reader) {
+                count++;
+                //System.out.println("Counting...");
+                try {
+                    lastState=systemState;
+                } catch (Exception e) {
+                    System.out.println(systemState.getFrame());
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("Something wrong with looping");
+        }
+        //System.out.println("We have "+count);
+        render(lastState);
+        visualization.conclude();
+    }
+
+    public void renderAll(int[] highlightChannels, StepState stepState) {
+        //System.out.println(Arrays.toString(highlightChannels));
+        SystemStateReader reader = readerMaker.apply(highlightChannels);
+        //System.out.println(Arrays.toString(reader.getFrames()));
+        // Initialize the visualization to this simulation.
+        visualization.init(geometry, reader.getTimes(), reader.getFrames());
+
+        // Scan through the frames...
+        //for (SystemState systemState : reader) {
+            //System.out.println("Reached");
+//        final Iterator<LightweightSystemState> itr = reader.iterator();
+//        SystemState lastState = itr.next();
+//        SystemState penultState = itr.next();
+//        while(itr.hasNext()) {
+//            penultState=lastState;
+//            lastState=itr.next();
+//        }
+//            render(penultState);
+        //}
+        SystemState lastState = null;
+        //SystemState penultState = null;
+        //SystemState antePenultState = null;
+        int count=0;
+        try {
+
+            for (SystemState systemState : reader) {
+                //System.out.println("Counting...");
+                lastState=systemState;
+                count++;
+            }
+        }
+        catch(Exception e)
+        {
+            //System.out.println("Something wrong with looping");
+        }
+        render(lastState);
+        //System.out.println(count);
         visualization.conclude();
     }
 

@@ -77,5 +77,12 @@ public class TimeWriter extends Serializer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        try {
+            stream.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 }

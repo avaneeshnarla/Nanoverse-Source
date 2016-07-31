@@ -53,10 +53,12 @@ public class AgentNameIOHelper {
 
     public void init() {
         nameVectorFile = fsManager.makeInstanceBinaryFile(VECTOR_FILENAME);
+        //indexWriter.writeNameIndex();
     }
 
     public void commit(StepState state) {
         commitHelper.commit(nameVectorFile, state);
+        indexWriter.writeNameIndex();
     }
 
     public void conclude() {
