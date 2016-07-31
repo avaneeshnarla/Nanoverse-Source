@@ -27,7 +27,9 @@ import nanoverse.runtime.layers.LayerManager;
 import nanoverse.runtime.layers.cell.AgentLayer;
 import nanoverse.runtime.processes.StepState;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Writes out the number of each "state" as a function of time.
@@ -82,5 +84,6 @@ public class CensusWriter extends Serializer {
     public void flush(StepState stepState) {
         AgentLayer layer = stepState.getRecordedAgentLayer();
         flushHelper.doFlush(layer, stepState.getFrame());
+        writeHelper.commit();
     }
 }
