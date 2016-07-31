@@ -22,7 +22,9 @@ package nanoverse.runtime.io.deserialize;
 
 import nanoverse.runtime.structural.utilities.FileConventions;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.EOFException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -39,7 +41,6 @@ public class TimeReader {
     public TimeReader(String root) {
         String filename = FileConventions.TIME_FILENAME;
         String absolute = root + filename;
-        //System.out.println(absolute);
         DataInputStream stream = FileConventions.makeDataInputStream(absolute);
         loadData(stream);
     }
