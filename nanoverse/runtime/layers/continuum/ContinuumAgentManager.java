@@ -59,6 +59,7 @@ public class ContinuumAgentManager {
 
     public ContinuumAgentLinker getLinker(Function<Coordinate, Double> stateLookup) {
         ContinuumAgentNotifier notifier = index.getNotifier();
+        //System.out.println(id);
         return new ContinuumAgentLinker(notifier, stateLookup);
     }
 

@@ -20,16 +20,10 @@
 
 package nanoverse.runtime.io.serialize.binary;
 
-import com.keypoint.PngEncoder;
 import nanoverse.runtime.control.GeneralParameters;
-import nanoverse.runtime.layers.SystemState;
 
 import java.awt.*;
-import java.awt.geom.GeneralPath;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.function.Supplier;
 
 /**
  * Created by dbborens on 10/28/2015.
@@ -51,7 +45,7 @@ public class VisualizationFileGenerator {
         this.p = p;
     }
 
-    public void generateFile(double time, Image image) {
+    public void generateFile(double time, Image image) throws RuntimeException {
         String fileName = buildFileName(time);
         File file = new File(fileName);
         encoder.encodeImage(image, file);

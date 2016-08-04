@@ -21,8 +21,8 @@
 package nanoverse.runtime.agent.action.stochastic;
 
 import nanoverse.runtime.agent.Agent;
-import java.lang.Math;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.function.Function;
 /**
@@ -74,13 +74,13 @@ public class ContinuumHillLinProbabilitySupplier extends ProbabilitySupplier {
         probability = (offset + Math.pow(value, coefficient)/
                 (Math.pow(value, coefficient)+Math.pow(halfpoint,
                         coefficient))*(maximum-offset))*substrate;
-        /*System.out.println("Offset = "+offset+
-                            "\nCoefficient = "+coefficient+
-                            "\nHalfpoint = " +halfpoint+
-                            "\nMaximum = "+maximum+
-                            "\nLayerValue = "+value+
-                            "\nProbability = "+probability+
-                            "\nSubstrateValue = "+substrate);*/
+        /*System.out.println(//"Offset = "+offset+
+                            //"\nCoefficient = "+coefficient+
+                            //"\nHalfpoint = " +halfpoint+
+                            //"\nMaximum = "+maximum+
+                            //"LayerValue = "+value+
+                            //"\nProbability = "+probability+
+                            //"\nSubstrateValue = "+substrate);*/
         logger.debug("p(x) = {}", probability);
         return probability;
     }

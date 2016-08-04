@@ -42,14 +42,27 @@ public class VisualizationImageEncoder {
         this.pngEncoder = pngEncoder;
     }
 
-    public void encodeImage(Image image, File file) {
+    public void encodeImage(Image img, File file) throws RuntimeException {
         try {
             FileOutputStream fos = new FileOutputStream(file);
-            pngEncoder.setImage(image);
+            pngEncoder.setImage(img);
             fos.write(pngEncoder.pngEncode());
             fos.close();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+        /*
+        try {
+        // Create a buffered image with transparency
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        // Draw the image on to the buffered image
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+        ImageIO.write(bimage, "jpg", file);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }*/
     }
 }

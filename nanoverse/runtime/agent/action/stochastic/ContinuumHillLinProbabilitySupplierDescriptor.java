@@ -26,7 +26,8 @@ import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.layers.LayerManager;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
-import java.util.function.*;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Created by avaneesh on 19/06/2016.
@@ -59,7 +60,9 @@ public class ContinuumHillLinProbabilitySupplierDescriptor extends
                 .getAgentLayer()
                 .getLookupManager()
                 .getAgentLocation(cell);
-
+        /*System.out.println("\n"+fieldName+" has value "+
+                layerManager.getContinuumLayer(fieldName).getLinker().get
+                (supplier));*/
         return layerManager.getContinuumLayer(fieldName).getLinker().get(supplier);
     }
 }

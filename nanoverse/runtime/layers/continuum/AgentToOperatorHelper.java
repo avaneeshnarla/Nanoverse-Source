@@ -27,7 +27,8 @@ import no.uib.cipr.matrix.DenseVector;
 import no.uib.cipr.matrix.sparse.CompDiagMatrix;
 
 import java.util.List;
-import java.util.function.*;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * Converts injections and exponentiations scheduled
@@ -79,6 +80,7 @@ public class AgentToOperatorHelper {
         BiConsumer<Integer, Double> consumer = (i, v) -> vector.add(i, v);
         Function<RelationshipTuple, Double> injLookup = RelationshipTuple::getInj;
         apply(relationships, injLookup, consumer);
+        //System.out.println("Source identified");
         return vector;
     }
 }

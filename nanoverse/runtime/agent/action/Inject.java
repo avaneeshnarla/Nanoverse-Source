@@ -52,6 +52,7 @@ public class Inject extends Action {
             .getContinuumLayer(layerId)
             .getScheduler()
             .inject(destination, delta);
+
     }
 
     @Override
@@ -62,9 +63,8 @@ public class Inject extends Action {
         Inject inject = (Inject) o;
 
         if (!deltaArg.equals(inject.deltaArg)) return false;
-        if (!layerId.equals(inject.layerId)) return false;
+        return layerId.equals(inject.layerId);
 
-        return true;
     }
 
     @Override

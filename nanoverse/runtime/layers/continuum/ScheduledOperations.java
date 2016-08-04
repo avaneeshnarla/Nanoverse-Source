@@ -24,7 +24,8 @@ import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.geometry.Geometry;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 import nanoverse.runtime.structural.utilities.MatrixUtils;
-import no.uib.cipr.matrix.*;
+import no.uib.cipr.matrix.DenseVector;
+import no.uib.cipr.matrix.Vector;
 import no.uib.cipr.matrix.sparse.CompDiagMatrix;
 
 import java.util.function.Function;
@@ -85,7 +86,8 @@ public class ScheduledOperations {
         int index = indexer.apply(coordinate);
         double current = source.get(index);
         double next = current + delta;
-
+        //System.out.println(delta+" injected to existing "+current+" at " +
+        //""+index);
         source.set(index, next);
     }
 

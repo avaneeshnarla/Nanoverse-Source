@@ -24,13 +24,11 @@ import nanoverse.runtime.control.GeneralParameters;
 import nanoverse.runtime.geometry.Geometry;
 import nanoverse.runtime.io.deserialize.SystemStateReader;
 import nanoverse.runtime.io.visual.Visualization;
-import nanoverse.runtime.layers.LightweightSystemState;
 import nanoverse.runtime.layers.SystemState;
 import nanoverse.runtime.processes.StepState;
 
 import java.awt.*;
-import java.util.Arrays;
-import java.util.Iterator;
+import java.io.IOException;
 import java.util.function.Function;
 
 /**
@@ -94,7 +92,7 @@ public class VisualizationFrameRenderer {
 //        visualization.conclude();
 //    }
 
-    public void renderAll(int[] highlightChannels) {
+    public void renderAll(int[] highlightChannels) throws IOException {
         //System.out.println(Arrays.toString(highlightChannels));
         SystemStateReader reader = readerMaker.apply(highlightChannels);
         //System.out.println(Arrays.toString(reader.getFrames()));
@@ -161,12 +159,15 @@ public class VisualizationFrameRenderer {
         {
             //System.out.println("Something wrong with looping");
         }
-        render(lastState);
+        try {
+            render(lastState);
+        } catch (RuntimeException ioe) {
+        }
         //System.out.println(count);
         visualization.conclude();
     }
 
-    private void render(SystemState systemState) {
+    private void render(SystemState systemState) throws RuntimeException {
         // Render the frame.
         Image image = visualization.render(systemState);
 

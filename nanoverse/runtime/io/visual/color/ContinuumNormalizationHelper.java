@@ -20,7 +20,8 @@
 
 package nanoverse.runtime.io.visual.color;
 
-import nanoverse.runtime.control.identifiers.*;
+import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.control.identifiers.Extrema;
 import nanoverse.runtime.layers.SystemState;
 
 import java.util.HashSet;
@@ -48,7 +49,7 @@ public class ContinuumNormalizationHelper {
     public double normalize(Coordinate c, SystemState systemState) {
         Extrema extrema = systemState.getContinuumExtrema(continuumId);
         double rawValue = systemState.getContinuumValue(continuumId, c);
-        //System.out.println(rawValue);
+        //System.out.println(continuumId);
         if (!observedValues.contains(rawValue)) {
 //            System.err.println(rawValue);
             observedValues.add(rawValue);
@@ -58,8 +59,12 @@ public class ContinuumNormalizationHelper {
         double normalized = 0;
         if (range!=0) {
              normalized = centeredValue / range;
-            System.out.println("Yay! Non-zero value!");
+            //System.out.println(normalized+ " = "+centeredValue+" / "+range);
         }
+        //else {
+        //    System.out.println("Continuum Value is the same " +
+        //            "everywhere:"+extrema.max());
+        //}
         //System.out.println(normalized);
         return normalized;
     }
