@@ -24,10 +24,13 @@ import nanoverse.runtime.agent.control.BehaviorDispatcher;
 import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.layers.LayerManager;
-import nanoverse.runtime.layers.continuum.*;
-import org.slf4j.*;
+import nanoverse.runtime.layers.continuum.ContinuumAgentLinker;
+import nanoverse.runtime.layers.continuum.Reaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.function.*;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
@@ -96,6 +99,15 @@ public class Agent {
     public void trigger(String behaviorName, Coordinate caller) throws HaltCondition {
         logger.debug("Triggering behavior \"{}\" in agent \"{}\" at location {}. Caller location: {}",
             behaviorName, name, callbackManager.getMyLocation(), caller);
+        //System.out.println("Agent triggers");
+        /*try {
+            //System.out.println("(" + caller.x() + ") , (" + caller.y() + ")");
+            System.out.println(caller.stringForm());
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println("No coordinate");
+        }*/
         dispatcher.trigger(behaviorName, caller, name);
     }
 

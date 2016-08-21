@@ -21,7 +21,9 @@
 package nanoverse.runtime.agent.action;
 
 import nanoverse.runtime.agent.Agent;
-import nanoverse.runtime.agent.action.helper.*;
+import nanoverse.runtime.agent.action.helper.ActionHighlighter;
+import nanoverse.runtime.agent.action.helper.ActionIdentityManager;
+import nanoverse.runtime.agent.action.helper.CoordAgentMapper;
 import nanoverse.runtime.agent.targets.TargetRule;
 import nanoverse.runtime.control.arguments.IntegerArgument;
 import nanoverse.runtime.control.halt.HaltCondition;
@@ -97,8 +99,7 @@ public class Swap extends Action {
 
         Swap swap = (Swap) o;
 
-        if (!targetRule.equals(swap.targetRule)) return false;
+        return targetRule.equals(swap.targetRule);
 
-        return true;
     }
 }

@@ -22,7 +22,8 @@ package nanoverse.compiler.pipeline.translate.nodes;
 
 import nanoverse.compiler.error.IllegalAssignmentError;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 /**
@@ -65,9 +66,8 @@ public class LocalContextMap {
 
         LocalContextMap that = (LocalContextMap) o;
 
-        if (!members.equals(that.members)) return false;
+        return members.equals(that.members);
 
-        return true;
     }
 
     public int size() {

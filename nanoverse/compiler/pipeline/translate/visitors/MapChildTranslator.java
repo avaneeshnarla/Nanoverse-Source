@@ -23,7 +23,9 @@ package nanoverse.compiler.pipeline.translate.visitors;
 import nanoverse.compiler.pipeline.interpret.nodes.ASTNode;
 import nanoverse.compiler.pipeline.translate.helpers.TranslationCallback;
 import nanoverse.compiler.pipeline.translate.nodes.ObjectNode;
-import nanoverse.compiler.pipeline.translate.symbol.*;
+import nanoverse.compiler.pipeline.translate.symbol.DictionarySymbolTable;
+import nanoverse.compiler.pipeline.translate.symbol.ListSymbolTable;
+import nanoverse.compiler.pipeline.translate.symbol.ResolvingSymbolTable;
 
 /**
  * Created by dbborens on 9/22/2015.
@@ -62,10 +64,7 @@ public class MapChildTranslator {
             return true;
         }
 
-        if (childRST instanceof DictionarySymbolTable) {
-            return true;
-        }
+        return childRST instanceof DictionarySymbolTable;
 
-        return false;
     }
 }

@@ -23,7 +23,8 @@ package nanoverse.compiler.pipeline.interpret.nodes;
 import com.google.common.base.Strings;
 
 import java.util.List;
-import java.util.stream.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by dbborens on 4/21/15.
@@ -61,9 +62,8 @@ public class ASTNode {
         ASTNode blockNode = (ASTNode) o;
 
         if (!identifier.equals(blockNode.identifier)) return false;
-        if (!children.equals(blockNode.children)) return false;
+        return children.equals(blockNode.children);
 
-        return true;
     }
 
     @Override

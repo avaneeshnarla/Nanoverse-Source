@@ -22,16 +22,21 @@ package nanoverse.runtime.processes.discrete;
 
 import nanoverse.runtime.agent.Agent;
 import nanoverse.runtime.control.arguments.AgentDescriptor;
-import nanoverse.runtime.control.halt.*;
+import nanoverse.runtime.control.halt.HaltCondition;
+import nanoverse.runtime.control.halt.LatticeFullEvent;
 import nanoverse.runtime.control.identifiers.Coordinate;
-import nanoverse.runtime.processes.*;
+import nanoverse.runtime.processes.BaseProcessArguments;
+import nanoverse.runtime.processes.StepState;
 import nanoverse.runtime.processes.discrete.cluster.SeparationStrategyManager;
 import nanoverse.runtime.processes.gillespie.GillespieState;
 import nanoverse.runtime.structural.RangeMap;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PowerScatter extends AgentProcess {
 
@@ -151,9 +156,7 @@ public class PowerScatter extends AgentProcess {
         if (getActiveSites() != null ? !getActiveSites().equals(scatter.getActiveSites()) : scatter.getActiveSites() != null)
             return false;
 
-        if (getMaxTargets() != null ? !getMaxTargets().equals(scatter.getMaxTargets()) : scatter.getMaxTargets() != null)
-            return false;
+        return getMaxTargets() != null ? getMaxTargets().equals(scatter.getMaxTargets()) : scatter.getMaxTargets() == null;
 
-        return true;
     }
 }

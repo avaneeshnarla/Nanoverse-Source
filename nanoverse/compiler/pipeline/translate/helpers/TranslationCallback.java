@@ -29,5 +29,5 @@ import nanoverse.compiler.pipeline.translate.symbol.SymbolTable;
  */
 @FunctionalInterface
 public interface TranslationCallback {
-    public ObjectNode walk(ASTNode node, SymbolTable st);
+    ObjectNode walk(ASTNode node, SymbolTable st);
 }

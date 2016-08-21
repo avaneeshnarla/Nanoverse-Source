@@ -26,7 +26,8 @@ import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.geometry.Geometry;
 import nanoverse.runtime.structural.CanonicalAgentMap;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -175,10 +176,8 @@ public abstract class AgentLayerContent {
             return false;
         if (indices != null ? !indices.equals(that.indices) : that.indices != null)
             return false;
-        if (map != null ? !map.equals(that.map) : that.map != null)
-            return false;
+        return map != null ? map.equals(that.map) : that.map == null;
 
-        return true;
     }
 
     @Override

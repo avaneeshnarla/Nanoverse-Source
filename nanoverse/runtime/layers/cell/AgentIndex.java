@@ -178,9 +178,7 @@ public class AgentIndex implements Set<Coordinate> {
 
         AgentIndex that = (AgentIndex) o;
 
-        if (contents != null ? !contents.equals(that.contents) : that.contents != null)
-            return false;
+        return contents != null ? contents.equals(that.contents) : that.contents == null;
 
-        return true;
     }
 }

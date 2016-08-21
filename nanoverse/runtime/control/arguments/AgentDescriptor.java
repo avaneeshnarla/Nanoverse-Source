@@ -21,16 +21,20 @@
 package nanoverse.runtime.control.arguments;
 
 import nanoverse.runtime.agent.Agent;
-import nanoverse.runtime.agent.action.*;
+import nanoverse.runtime.agent.action.Action;
+import nanoverse.runtime.agent.action.ActionDescriptor;
 import nanoverse.runtime.agent.control.BehaviorDispatcher;
 import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.layers.LayerManager;
 import nanoverse.runtime.layers.continuum.Reaction;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by dbborens on 11/23/14.
@@ -69,9 +73,8 @@ public class AgentDescriptor implements Argument<Agent> {
         AgentDescriptor that = (AgentDescriptor) o;
 
         //if (!behaviorRoot.equals(that.behaviorRoot)) return false;
-        if (!name.equals(that.name)) return false;
+        return name.equals(that.name);
 
-        return true;
     }
 
     @Override

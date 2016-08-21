@@ -37,11 +37,8 @@ public class NullAction extends Action {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof NullAction) {
-            return true;
-        }
+        return obj instanceof NullAction;
 
-        return false;
     }
 
     @Override

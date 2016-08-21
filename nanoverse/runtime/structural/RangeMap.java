@@ -21,7 +21,8 @@
 package nanoverse.runtime.structural;
 
 import nanoverse.runtime.structural.utilities.EpsilonUtil;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
@@ -85,11 +86,8 @@ public class RangeMap<T> {
         }
 
 
-        if (!contentsEqual(this, other)) {
-            return false;
-        }
+        return contentsEqual(this, other);
 
-        return true;
     }
 
     public double getTotalWeight() {
@@ -97,7 +95,7 @@ public class RangeMap<T> {
         if (floors.size() == 1) {
             return 0.0;
         }
-
+        //System.out.println(floors.size());
         double totalWeight = 0;
         for (int i = 0; i < floors.size() - 1; i++) {
             double weight = floors.get(i + 1) - floors.get(i);
@@ -145,11 +143,8 @@ public class RangeMap<T> {
         Object pResult = p.selectTarget(midpoint);
         Object qResult = q.selectTarget(midpoint);
 
-        if (!pResult.equals(qResult)) {
-            return false;
-        }
+        return pResult.equals(qResult);
 
-        return true;
     }
 
     /**

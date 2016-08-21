@@ -21,9 +21,15 @@
 package nanoverse.runtime.geometry.boundaries;
 
 import nanoverse.runtime.control.identifiers.Coordinate;
-import nanoverse.runtime.geometry.boundaries.helpers.*;
+import nanoverse.runtime.geometry.boundaries.helpers.WrapHelper;
+import nanoverse.runtime.geometry.boundaries.helpers.WrapHelper1D;
+import nanoverse.runtime.geometry.boundaries.helpers.WrapHelper2D;
+import nanoverse.runtime.geometry.boundaries.helpers.WrapHelper3D;
 import nanoverse.runtime.geometry.lattice.Lattice;
-import nanoverse.runtime.geometry.shape.*;
+import nanoverse.runtime.geometry.shape.Cuboid;
+import nanoverse.runtime.geometry.shape.Line;
+import nanoverse.runtime.geometry.shape.Rectangle;
+import nanoverse.runtime.geometry.shape.Shape;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
 /**
@@ -71,10 +77,8 @@ public class Periodic extends Boundary {
 
         Periodic periodic = (Periodic) o;
 
-        if (helper != null ? !helper.equals(periodic.helper) : periodic.helper != null)
-            return false;
+        return helper != null ? helper.equals(periodic.helper) : periodic.helper == null;
 
-        return true;
     }
 
     @Override

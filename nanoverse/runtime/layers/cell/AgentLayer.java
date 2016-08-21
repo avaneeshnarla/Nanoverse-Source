@@ -63,10 +63,8 @@ public class AgentLayer extends Layer {
 
         AgentLayer cellLayer = (AgentLayer) o;
 
-        if (content != null ? !content.equals(cellLayer.content) : cellLayer.content != null)
-            return false;
+        return content != null ? content.equals(cellLayer.content) : cellLayer.content == null;
 
-        return true;
     }
 
     @Override

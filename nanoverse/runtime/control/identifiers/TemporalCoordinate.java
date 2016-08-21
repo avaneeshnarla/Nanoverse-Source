@@ -62,9 +62,7 @@ public class TemporalCoordinate extends Coordinate {
         if (getClass() != obj.getClass())
             return false;
         TemporalCoordinate other = (TemporalCoordinate) obj;
-        if (Double.doubleToLongBits(t) != Double.doubleToLongBits(other.t))
-            return false;
-        return true;
+        return Double.doubleToLongBits(t) == Double.doubleToLongBits(other.t);
     }
 
     @Override

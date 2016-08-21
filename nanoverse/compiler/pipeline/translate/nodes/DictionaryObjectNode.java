@@ -74,9 +74,8 @@ public class DictionaryObjectNode implements ObjectNode {
         DictionaryObjectNode that = (DictionaryObjectNode) o;
 
         if (!local.equals(that.local)) return false;
-        if (!symbolTable.equals(that.symbolTable)) return false;
+        return symbolTable.equals(that.symbolTable);
 
-        return true;
     }
 
     public int getLineNumber() { return lineNumber; }

@@ -24,9 +24,11 @@ import nanoverse.runtime.agent.Agent;
 import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.layers.LayerManager;
 import nanoverse.runtime.processes.discrete.filter.Filter;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Targets specify which agents should receive the consequences
@@ -67,6 +69,8 @@ public abstract class TargetRule {
     public List<Coordinate> report(Agent caller) {
         List<Coordinate> candidates = getCandidates(caller);
         List<Coordinate> targets = filter.apply(candidates);
+        if (targets.size() != candidates.size())
+            System.out.println("Filtered");
         logger.debug("Reporting {} targets from an original set of {} candidates.", targets.size(), candidates.size());
         return targets;
     }

@@ -24,7 +24,8 @@ import nanoverse.runtime.agent.Agent;
 import nanoverse.runtime.control.arguments.AgentDescriptor;
 import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.control.identifiers.Coordinate;
-import nanoverse.runtime.processes.*;
+import nanoverse.runtime.processes.BaseProcessArguments;
+import nanoverse.runtime.processes.StepState;
 import nanoverse.runtime.processes.gillespie.GillespieState;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 import org.slf4j.Logger;
@@ -117,9 +118,7 @@ public class Fill extends AgentProcess {
         if (getActiveSites() != null ? !getActiveSites().equals(fill.getActiveSites()) : fill.getActiveSites() != null)
             return false;
 
-        if (getMaxTargets() != null ? !getMaxTargets().equals(fill.getMaxTargets()) : fill.getMaxTargets() != null)
-            return false;
+        return getMaxTargets() != null ? getMaxTargets().equals(fill.getMaxTargets()) : fill.getMaxTargets() == null;
 
-        return true;
     }
 }

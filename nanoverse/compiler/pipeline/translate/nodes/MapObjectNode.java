@@ -21,7 +21,8 @@
 package nanoverse.compiler.pipeline.translate.nodes;
 
 import nanoverse.compiler.error.UserError;
-import nanoverse.compiler.pipeline.translate.symbol.*;
+import nanoverse.compiler.pipeline.translate.symbol.MapSymbolTable;
+import nanoverse.compiler.pipeline.translate.symbol.ResolvingSymbolTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,9 +90,8 @@ public class MapObjectNode implements ObjectNode {
         MapObjectNode that = (MapObjectNode) o;
 
         if (!local.equals(that.local)) return false;
-        if (!symbolTable.equals(that.symbolTable)) return false;
+        return symbolTable.equals(that.symbolTable);
 
-        return true;
     }
 
     public int getLineNumber() { return lineNumber; }

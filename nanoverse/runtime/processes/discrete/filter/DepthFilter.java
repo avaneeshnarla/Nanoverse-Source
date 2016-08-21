@@ -26,7 +26,9 @@ import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.layers.cell.AgentLayer;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Removes all individuals at greater than a certain depth from the surface
@@ -92,8 +94,7 @@ public class DepthFilter extends Filter {
 
         DepthFilter that = (DepthFilter) o;
 
-        if (!maxDepth.equals(that.maxDepth)) return false;
+        return maxDepth.equals(that.maxDepth);
 
-        return true;
     }
 }

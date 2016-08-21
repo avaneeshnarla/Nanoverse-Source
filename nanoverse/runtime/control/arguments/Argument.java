@@ -31,5 +31,5 @@ import nanoverse.runtime.control.halt.HaltCondition;
  */
 public interface Argument<T> {
 
-    public T next() throws HaltCondition;
+    T next() throws HaltCondition;
 }

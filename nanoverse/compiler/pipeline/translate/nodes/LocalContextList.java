@@ -20,7 +20,8 @@
 
 package nanoverse.compiler.pipeline.translate.nodes;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -61,8 +62,7 @@ public class LocalContextList {
 
         LocalContextList that = (LocalContextList) o;
 
-        if (!members.equals(that.members)) return false;
+        return members.equals(that.members);
 
-        return true;
     }
 }

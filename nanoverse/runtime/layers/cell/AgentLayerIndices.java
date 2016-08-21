@@ -22,9 +22,11 @@ package nanoverse.runtime.layers.cell;
 
 import nanoverse.runtime.agent.Agent;
 import nanoverse.runtime.control.identifiers.Coordinate;
-import nanoverse.runtime.structural.*;
+import nanoverse.runtime.structural.CanonicalAgentMap;
+import nanoverse.runtime.structural.NonNullStringMap;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Direct representation of cell layer indices. Only the cell layer and
@@ -64,11 +66,7 @@ public class AgentLayerIndices {
 
     public boolean isOccupied(Coordinate cell) {
         Coordinate c = cell.canonicalize();
-        if (occupiedSites.contains(c)) {
-            return true;
-        } else {
-            return false;
-        }
+        return occupiedSites.contains(c);
     }
 
     /**
@@ -180,11 +178,8 @@ public class AgentLayerIndices {
 
         // We don't want true equality of the cell location index, because we
         // make a new copy of each cell as part of cloning the AgentLayer.
-        if (!valuesEqual(cellLocationIndex, indices.cellLocationIndex)) {
-            return false;
-        }
+        return valuesEqual(cellLocationIndex, indices.cellLocationIndex);
 
-        return true;
     }
 
     /**

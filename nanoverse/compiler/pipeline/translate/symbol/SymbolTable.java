@@ -25,5 +25,5 @@ package nanoverse.compiler.pipeline.translate.symbol;
  */
 public interface SymbolTable {
 
-    public String getDescription();
+    String getDescription();
 }

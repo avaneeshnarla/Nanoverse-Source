@@ -22,11 +22,14 @@ package nanoverse.runtime.control;
 
 import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.layers.LayerManager;
-import nanoverse.runtime.processes.*;
+import nanoverse.runtime.processes.NanoverseProcess;
+import nanoverse.runtime.processes.StepState;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by dbborens on 1/6/14.
@@ -67,13 +70,14 @@ public class ProcessManager {
     protected List<NanoverseProcess> getTriggeredProcesses(int n) throws HaltCondition {
 
         ArrayList<NanoverseProcess> triggeredProcesses = new ArrayList<>(processList.size());
-
+        //int count=0;
         for (NanoverseProcess process : processList) {
             if (triggered(n, process)) {
+                //count++;
                 triggeredProcesses.add(process);
             }
         }
-
+        //System.out.println(count);
         return triggeredProcesses;
     }
 
@@ -99,13 +103,8 @@ public class ProcessManager {
             int tt = n - start;
 
             // 4a: Phase-adjusted time fits period.
-            if (tt % period == 0) {
-                return true;
-
-                // 4b: It doesn't.
-            } else {
-                return false;
-            }
+            // 4b: It doesn't.
+            return tt % period == 0;
 
         } else {
             throw new IllegalStateException("Unconsidered trigger state reached.");

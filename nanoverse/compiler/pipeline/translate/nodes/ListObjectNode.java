@@ -77,9 +77,8 @@ public class ListObjectNode implements ObjectNode {
         ListObjectNode that = (ListObjectNode) o;
 
         if (!local.equals(that.local)) return false;
-        if (!symbolTable.equals(that.symbolTable)) return false;
+        return symbolTable.equals(that.symbolTable);
 
-        return true;
     }
 
     public int getLineNumber() { return lineNumber; }

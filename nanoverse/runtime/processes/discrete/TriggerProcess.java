@@ -22,7 +22,8 @@ package nanoverse.runtime.processes.discrete;
 
 import nanoverse.runtime.agent.Agent;
 import nanoverse.runtime.control.halt.HaltCondition;
-import nanoverse.runtime.processes.*;
+import nanoverse.runtime.processes.BaseProcessArguments;
+import nanoverse.runtime.processes.StepState;
 import nanoverse.runtime.processes.discrete.filter.*;
 import nanoverse.runtime.processes.gillespie.GillespieState;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
@@ -92,8 +93,10 @@ public class TriggerProcess extends AgentProcess {
 
     @Override
     public void fire(StepState state) throws HaltCondition {
+        //System.out.println(targets.size());
+        int count = 0;
         for (Agent target : targets) {
-
+            count++;
             // If the cell has been removed as a result of firing the trigger
             // process in a previous target, skip it.
             if (!getLayer().getViewer().exists(target)) {
@@ -104,7 +107,7 @@ public class TriggerProcess extends AgentProcess {
             // a process rather than a cell.
             target.trigger(behaviorName, null);
         }
-
+        //System.out.println(count);
     }
 
     @Override

@@ -64,11 +64,8 @@ public abstract class Boundary {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!obj.getClass().equals(this.getClass())) {
-            return false;
-        }
+        return obj.getClass().equals(this.getClass());
 
-        return true;
     }
 
     public abstract Boundary clone(Shape scaledShape, Lattice clonedLattice);

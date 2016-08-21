@@ -58,10 +58,7 @@ public class UniformInteger implements IntegerArgument {
             return false;
         }
 
-        if (offset != other.offset) {
-            return false;
-        }
+        return offset == other.offset;
 
-        return true;
     }
 }

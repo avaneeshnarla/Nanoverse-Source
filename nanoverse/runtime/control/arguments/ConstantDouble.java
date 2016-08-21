@@ -45,11 +45,7 @@ public class ConstantDouble extends Constant<Double> implements DoubleArgument {
 
         ConstantDouble other = (ConstantDouble) obj;
 
-        if (!EpsilonUtil.epsilonEquals(next(), other.next())) {
-            return false;
-        }
-
-        return true;
+        return EpsilonUtil.epsilonEquals(next(), other.next());
 
     }
 }

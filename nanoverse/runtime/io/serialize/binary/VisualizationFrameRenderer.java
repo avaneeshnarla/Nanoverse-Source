@@ -167,6 +167,20 @@ public class VisualizationFrameRenderer {
         visualization.conclude();
     }
 
+    public void renderAll(int[] highlightChannels, int dummy) {
+        SystemStateReader reader = readerMaker.apply(highlightChannels);
+
+        // Initialize the visualization to this simulation.
+        visualization.init(geometry, reader.getTimes(), reader.getFrames());
+
+        // Scan through the frames...
+        for (SystemState systemState : reader) {
+            render(systemState);
+        }
+
+        visualization.conclude();
+    }
+
     private void render(SystemState systemState) throws RuntimeException {
         // Render the frame.
         Image image = visualization.render(systemState);

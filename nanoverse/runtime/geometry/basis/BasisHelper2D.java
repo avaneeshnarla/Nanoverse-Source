@@ -11,11 +11,11 @@ public interface BasisHelper2D {
      * Convert 2D cartesian coordinates to coordinates described
      * in the native basis of the lattice.
      */
-    public Coordinate adjust(Coordinate c);
+    Coordinate adjust(Coordinate c);
 
     /**
      * Convert 2D cartesian coordinates to coordinates described
      * in the native basis of the lattice.
      */
-    public Coordinate invAdjust(Coordinate c);
+    Coordinate invAdjust(Coordinate c);
 }

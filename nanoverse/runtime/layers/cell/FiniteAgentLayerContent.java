@@ -57,9 +57,8 @@ public class FiniteAgentLayerContent extends AgentLayerContent {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return !(o == null || getClass() != o.getClass());
 
-        return true;
     }
 
     @Override

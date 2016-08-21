@@ -20,7 +20,7 @@
 
 package nanoverse.runtime.geometry.lattice;
 
-import nanoverse.runtime.control.identifiers.*;
+import nanoverse.runtime.control.identifiers.Coordinate;
 
 public abstract class Lattice {
 
@@ -82,11 +82,8 @@ public abstract class Lattice {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!obj.getClass().equals(this.getClass())) {
-            return false;
-        }
+        return obj.getClass().equals(this.getClass());
 
-        return true;
     }
 
     public abstract int getNeighborhoodDistance(Coordinate p, Coordinate q);

@@ -28,7 +28,9 @@ import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.layers.LayerManager;
 import nanoverse.runtime.layers.cell.AgentUpdateManager;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Random;
 
 /**
  * Places a copy or copies of the current cell toward any vacant location
@@ -108,8 +110,7 @@ public class ExpandWeighted extends Action {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return !(o == null || getClass() != o.getClass());
 
-        return true;
     }
 }

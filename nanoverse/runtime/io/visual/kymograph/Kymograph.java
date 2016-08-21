@@ -22,9 +22,11 @@ package nanoverse.runtime.io.visual.kymograph;
 
 import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.geometry.Geometry;
-import nanoverse.runtime.io.visual.*;
+import nanoverse.runtime.io.visual.Visualization;
+import nanoverse.runtime.io.visual.VisualizationProperties;
 import nanoverse.runtime.io.visual.highlight.HighlightManager;
-import nanoverse.runtime.io.visual.map.*;
+import nanoverse.runtime.io.visual.map.CoordinateRenderer;
+import nanoverse.runtime.io.visual.map.PixelTranslator;
 import nanoverse.runtime.layers.SystemState;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
@@ -110,11 +112,8 @@ public class Kymograph extends Visualization {
             return false;
         }
 
-        if (!translator.equals(other.translator)) {
-            return false;
-        }
+        return translator.equals(other.translator);
 
-        return true;
     }
 
 }

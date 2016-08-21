@@ -21,7 +21,8 @@
 package nanoverse.runtime.processes.temporal;
 
 import nanoverse.runtime.control.halt.HaltCondition;
-import nanoverse.runtime.processes.*;
+import nanoverse.runtime.processes.BaseProcessArguments;
+import nanoverse.runtime.processes.StepState;
 
 /**
  * Simple stochastic process for time scaling. Assumes all agents
@@ -43,6 +44,7 @@ public class ExponentialInverse extends TimeProcess {
     @Override
     public void fire(StepState state) throws HaltCondition {
         double lambda = 1.0D / getLayerManager().getAgentLayer().getViewer().getOccupiedSites().count();
+        System.out.println(lambda);
         double dt = expRandom(lambda);
         state.advanceClock(dt);
     }

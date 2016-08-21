@@ -72,10 +72,7 @@ public class DotGlyph extends Glyph {
             return false;
         }
 
-        if (!color.equals(other.color)) {
-            return false;
-        }
+        return color.equals(other.color);
 
-        return true;
     }
 }

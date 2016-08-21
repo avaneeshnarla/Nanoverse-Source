@@ -116,11 +116,8 @@ public class Extrema {
             return false;
         }
 
-        if (!(other.argMin.equals(this.argMin))) {
-            return false;
-        }
+        return other.argMin.equals(this.argMin);
 
-        return true;
     }
 
     @Override

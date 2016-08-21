@@ -17,33 +17,18 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+package nanoverse.compiler.pipeline.instantiate.factory.io.serialize.binary;
 
-package nanoverse.runtime.control.arguments;
+import nanoverse.runtime.control.GeneralParameters;
+import nanoverse.runtime.io.serialize.binary.VisualizationTailSerializer;
+import nanoverse.runtime.io.visual.Visualization;
+import nanoverse.runtime.layers.LayerManager;
 
-/**
- * Created by dbborens on 8/12/15.
- */
-public class Constant<T> implements Argument<T> {
-    private T value;
 
-    public Constant(T value) {
-        this.value = value;
-    }
+public class VisualizationTailSerializerFactoryHelper {
 
-    @Override
-    public T next() {
-        return value;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Constant)) {
-            return false;
-        }
-
-        Constant other = (Constant) obj;
-
-        return other.value == value;
-
+    public VisualizationTailSerializer build(GeneralParameters p, Visualization
+            visualization, String prefix, LayerManager lm) {
+        return new VisualizationTailSerializer(p, visualization, prefix, lm);
     }
 }

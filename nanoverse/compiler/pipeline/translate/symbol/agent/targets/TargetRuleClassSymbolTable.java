@@ -20,7 +20,8 @@
 
 package nanoverse.compiler.pipeline.translate.symbol.agent.targets;
 
-import nanoverse.compiler.pipeline.translate.symbol.*;
+import nanoverse.compiler.pipeline.translate.symbol.ClassSymbolTable;
+import nanoverse.compiler.pipeline.translate.symbol.InstantiableSymbolTable;
 import nanoverse.runtime.agent.targets.TargetDescriptor;
 
 import java.util.HashMap;
@@ -41,6 +42,7 @@ public class TargetRuleClassSymbolTable extends ClassSymbolTable<TargetDescripto
     public HashMap<String, Supplier<InstantiableSymbolTable>> resolveSubclasses() {
         HashMap<String, Supplier<InstantiableSymbolTable>> ret = new HashMap<>();
         allNeighbors(ret);
+        randomNeighbor(ret);
         occupiedNeighbors(ret);
         vacantNeighbors(ret);
         caller(ret);
@@ -71,5 +73,12 @@ public class TargetRuleClassSymbolTable extends ClassSymbolTable<TargetDescripto
     private void allNeighbors(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
         Supplier<InstantiableSymbolTable> supplier = TargetAllNeighborsInstSymbolTable::new;
         ret.put("AllNeighbors", supplier);
+    }
+
+    private void randomNeighbor(HashMap<String,
+            Supplier<InstantiableSymbolTable>> ret) {
+        Supplier<InstantiableSymbolTable> supplier =
+                TargetRandomNeighborInstSymbolTable::new;
+        ret.put("RandomNeighbor", supplier);
     }
 }

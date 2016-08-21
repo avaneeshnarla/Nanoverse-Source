@@ -110,9 +110,8 @@ public abstract class Coordinate implements Comparable<Coordinate> {
         if (flags != that.flags) return false;
         if (x != that.x) return false;
         if (y != that.y) return false;
-        if (z != that.z) return false;
+        return z == that.z;
 
-        return true;
     }
 
     @Override

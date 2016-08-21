@@ -24,7 +24,8 @@ import nanoverse.runtime.agent.Agent;
 import nanoverse.runtime.agent.action.Action;
 import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.control.identifiers.Coordinate;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.stream.Stream;
@@ -60,9 +61,11 @@ public class BehaviorDispatcher {
             throw new IllegalStateException("Action \"" + behaviorName + "\" not found on agent named \"" + name + ".\"");
         }
 
-
+        //System.out.println(behaviorName+" triggered");// at "+caller
+        //.stringForm());
         Action behavior = behaviors.get(behaviorName);
         behavior.run(caller);
+        //System.out.println();
     }
 
     public BehaviorDispatcher copy(Agent child) {

@@ -55,9 +55,8 @@ public class GeometryDescriptor {
         GeometryDescriptor that = (GeometryDescriptor) o;
 
         if (!lattice.equals(that.lattice)) return false;
-        if (!shape.equals(that.shape)) return false;
+        return shape.equals(that.shape);
 
-        return true;
     }
 
     public Geometry make(Boundary boundary) {

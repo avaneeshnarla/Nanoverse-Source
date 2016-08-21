@@ -21,13 +21,16 @@
 package nanoverse.runtime.agent.action;
 
 import nanoverse.runtime.agent.Agent;
-import nanoverse.runtime.agent.action.helper.*;
+import nanoverse.runtime.agent.action.helper.ActionHighlighter;
+import nanoverse.runtime.agent.action.helper.ActionIdentityManager;
+import nanoverse.runtime.agent.action.helper.CoordAgentMapper;
 import nanoverse.runtime.agent.targets.TargetRule;
 import nanoverse.runtime.control.arguments.IntegerArgument;
 import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.layers.LayerManager;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -94,6 +97,7 @@ public class Trigger extends Action {
         }
 
         List<Coordinate> targets = targetRule.report(callerAgent);
+        //System.out.println(targets.size());
         logger.debug("Triggering behavior \"{}\" with {} targets.", behaviorName, targets.size());
         for (Coordinate target : targets) {
             // We require an occupied cell for the target of trigger actions.

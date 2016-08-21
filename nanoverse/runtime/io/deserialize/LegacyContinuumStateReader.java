@@ -125,11 +125,8 @@ public class LegacyContinuumStateReader implements Iterator<double[]> {
     public boolean hasNext() {
         // If the last attempt to load a record resulted in a null record,
         // we have reached the end of the file; there is no next record.
-        if (current == null) {
-            return false;
-        }
+        return current != null;
 
-        return true;
     }
 
     @Override

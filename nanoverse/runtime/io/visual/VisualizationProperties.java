@@ -124,11 +124,8 @@ public class VisualizationProperties {
             return false;
         }
 
-        if (!EpsilonUtil.epsilonEquals(edge, other.edge)) {
-            return false;
-        }
+        return EpsilonUtil.epsilonEquals(edge, other.edge);
 
-        return true;
     }
 
     public Coordinate[] getCoordinates() {

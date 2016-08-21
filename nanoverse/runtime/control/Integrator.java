@@ -20,19 +20,21 @@
 
 package nanoverse.runtime.control;
 
-import nanoverse.runtime.control.halt.*;
+import nanoverse.runtime.control.halt.HaltCondition;
+import nanoverse.runtime.control.halt.StepMaxReachedEvent;
 import nanoverse.runtime.io.serialize.SerializationManager;
 import nanoverse.runtime.processes.StepState;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Integrator {
 
     private final ProcessManager processManager;
+    private final Logger logger = LoggerFactory.getLogger(Integrator.class);
     protected double time = 0.0D;
     private GeneralParameters p;
     private SerializationManager serializationManager;
-    private final Logger logger = LoggerFactory.getLogger(Integrator.class);
 
     @FactoryTarget
     public Integrator(GeneralParameters p, ProcessManager processManager,
@@ -76,12 +78,19 @@ public class Integrator {
         for (int n = 0; n < p.T(); n++) {
             logger.debug("Starting cycle {}.", n);
             StepState state = new StepState(time, n);
+            //for(int timePassed=0; timePassed<1; ) {
+            //while (state.getTime() < (n + 1) * state.getDt())
+            //    timePassed+=1.0D/getLayerManager().getAgentLayer().getViewer()
+            //            .getOccupiedSites().count();
             try {
                 state = processManager.doTriggeredProcesses(state);
             } catch (HaltCondition haltCondition) {
                 haltCondition.setGillespie(state.getTime());
                 return haltCondition;
+                //    }
             }
+            //ExponentialInverse e = new ExponentialInverse(state.get())
+            //}
 
             // Send the results to the serialization manager.
             serializationManager.flush(state);
@@ -112,9 +121,7 @@ public class Integrator {
 
         if (processManager != null ? !processManager.equals(that.processManager) : that.processManager != null)
             return false;
-        if (serializationManager != null ? !serializationManager.equals(that.serializationManager) : that.serializationManager != null)
-            return false;
+        return serializationManager != null ? serializationManager.equals(that.serializationManager) : that.serializationManager == null;
 
-        return true;
     }
 }

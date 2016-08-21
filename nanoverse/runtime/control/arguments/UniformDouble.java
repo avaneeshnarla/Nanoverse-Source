@@ -61,10 +61,7 @@ public class UniformDouble implements DoubleArgument {
             return false;
         }
 
-        if (!EpsilonUtil.epsilonEquals(offset, other.offset)) {
-            return false;
-        }
+        return EpsilonUtil.epsilonEquals(offset, other.offset);
 
-        return true;
     }
 }

@@ -32,9 +32,9 @@ public interface ObjectNode {
      *
      * @return
      */
-    public Class getInstantiatingClass();
+    Class getInstantiatingClass();
 
-    public InstantiableSymbolTable getSymbolTable();
+    InstantiableSymbolTable getSymbolTable();
 
-    public int getLineNumber();
+    int getLineNumber();
 }

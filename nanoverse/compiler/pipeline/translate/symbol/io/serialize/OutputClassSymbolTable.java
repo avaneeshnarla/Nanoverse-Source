@@ -20,7 +20,8 @@
 
 package nanoverse.compiler.pipeline.translate.symbol.io.serialize;
 
-import nanoverse.compiler.pipeline.translate.symbol.*;
+import nanoverse.compiler.pipeline.translate.symbol.ClassSymbolTable;
+import nanoverse.compiler.pipeline.translate.symbol.InstantiableSymbolTable;
 import nanoverse.runtime.io.serialize.Serializer;
 
 import java.util.HashMap;
@@ -54,6 +55,7 @@ public class OutputClassSymbolTable extends ClassSymbolTable<Serializer> {
         timeWriter(ret);
         highlightWriter(ret);
         visualizationSerializer(ret);
+        visualizationTailSerializer(ret);
         correlationWriter(ret);
         return ret;
     }
@@ -132,6 +134,13 @@ public class OutputClassSymbolTable extends ClassSymbolTable<Serializer> {
     public void visualizationSerializer(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
         Supplier<InstantiableSymbolTable> supplier = VisualizationSerializerInstSymbolTable::new;
         ret.put("VisualizationSerializer", supplier);
+    }
+
+    public void visualizationTailSerializer(HashMap<String,
+            Supplier<InstantiableSymbolTable>> ret) {
+        Supplier<InstantiableSymbolTable> supplier =
+                VisualizationTailSerializerInstSymbolTable::new;
+        ret.put("VisualizationTailSerializer", supplier);
     }
 
     public void correlationWriter(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
