@@ -20,10 +20,14 @@
 
 package nanoverse.runtime.geometry.boundaries.helpers;
 
-import nanoverse.runtime.control.identifiers.*;
+import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.control.identifiers.Coordinate2D;
+import nanoverse.runtime.control.identifiers.Flags;
 import nanoverse.runtime.geometry.basis.BasisHelper2D;
-import nanoverse.runtime.geometry.lattice.*;
-import nanoverse.runtime.geometry.shape.*;
+import nanoverse.runtime.geometry.lattice.Lattice;
+import nanoverse.runtime.geometry.lattice.TriangularLattice;
+import nanoverse.runtime.geometry.shape.Rectangle;
+import nanoverse.runtime.geometry.shape.Shape;
 
 /**
  * Created by dbborens on 5/7/14.
@@ -51,6 +55,9 @@ public class WrapHelper2D extends WrapHelper {
         }
     }
 
+    public int getWidth() {
+        return width;
+    }
     public Coordinate wrapAll(Coordinate toWrap) {
         checkValid(toWrap);
         Coordinate xWrapped = xWrap(toWrap);

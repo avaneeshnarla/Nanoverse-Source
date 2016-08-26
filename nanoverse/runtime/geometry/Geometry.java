@@ -20,12 +20,16 @@
 
 package nanoverse.runtime.geometry;
 
-import nanoverse.runtime.control.identifiers.*;
+import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.control.identifiers.Coordinate2D;
+import nanoverse.runtime.control.identifiers.Coordinate3D;
+import nanoverse.runtime.control.identifiers.Flags;
 import nanoverse.runtime.geometry.boundaries.Boundary;
 import nanoverse.runtime.geometry.lattice.Lattice;
 import nanoverse.runtime.geometry.shape.Shape;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.function.Function;
 
 public class Geometry {
@@ -59,6 +63,13 @@ public class Geometry {
         rebuildIndex();
     }
 
+    public Boundary getBoundary() {
+        return boundary;
+    }
+
+    public Shape getShape() {
+        return shape;
+    }
     public void rebuildIndex() {
         coordinateIndex.clear();
 
@@ -233,7 +244,12 @@ public class Geometry {
         if (mode == APPLY_BOUNDARIES) {
             Coordinate pw = boundary.apply(pCoord);
             Coordinate qw = boundary.apply(qCoord);
+            //Coordinate pw= boundary.apply(pw1, qw1)[0];
+            //Coordinate qw= boundary.apply(pw1, qw1)[1];
             Coordinate wrapped = lattice.getDisplacement(pw, qw);
+            /*if (wrapped.x()>0 || wrapped.y()>0){
+            System.out.println("Preparing to shove "+pw+" toward "+qw+". " +
+                    "Displacement:"+ wrapped);}*/
             return wrapped;
         } else if (mode == FLAG_BOUNDARIES) {
             throw new UnsupportedOperationException();

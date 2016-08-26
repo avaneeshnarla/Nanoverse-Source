@@ -22,6 +22,7 @@ package nanoverse.runtime.agent.action.displacement;
 
 import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.geometry.Geometry;
 import nanoverse.runtime.layers.cell.AgentLayer;
 
 import java.util.Random;
@@ -52,7 +53,13 @@ public class ShoveHelper {
         layer.getUpdateManager().swap(p, q);
     }
 
-    public CoordinateTuple getNextTuple(Coordinate currentLocation, Coordinate d) {
+    public CoordinateTuple getNextTuple(Coordinate currentLocation,
+                                        Coordinate d, Geometry geometry) {
+        return chooser.getNextTuple(currentLocation, d, geometry);
+    }
+
+    public CoordinateTuple getNextTuple(Coordinate currentLocation,
+                                        Coordinate d) {
         return chooser.getNextTuple(currentLocation, d);
     }
 

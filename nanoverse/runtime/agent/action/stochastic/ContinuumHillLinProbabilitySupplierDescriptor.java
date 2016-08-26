@@ -43,6 +43,7 @@ public class ContinuumHillLinProbabilitySupplierDescriptor extends
                                                       double halfpoint,
                                                       double maximum,
                                                       LayerManager layerManager) {
+        //System.out.println(layer+substrate);
         Function<Agent, Double> valueLookup = c -> getFieldValueAt(c, layerManager, layer);
         Function<Agent, Double> substrateLookup = c -> getFieldValueAt(c,
                 layerManager, substrate);
@@ -50,12 +51,10 @@ public class ContinuumHillLinProbabilitySupplierDescriptor extends
                 new ContinuumHillLinProbabilitySupplier(valueLookup,
                         substrateLookup,
                         cell, coefficient, offset, halfpoint, maximum);
-
         super.setConstructor(constructor);
     }
 
     private double getFieldValueAt(Agent cell, LayerManager layerManager, String fieldName) {
-
         Supplier<Coordinate> supplier = () -> layerManager
                 .getAgentLayer()
                 .getLookupManager()

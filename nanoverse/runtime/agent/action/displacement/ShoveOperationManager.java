@@ -23,7 +23,8 @@ package nanoverse.runtime.agent.action.displacement;
 import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.geometry.Geometry;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.function.BiFunction;
@@ -50,15 +51,43 @@ public class ShoveOperationManager {
      * @param sites:           list of affected sites (for highlighting)
      *                         <p>
      */
-    public void doShove(Coordinate currentLocation, Coordinate displacement, HashSet<Coordinate> sites) throws HaltCondition {
+    public void doShove(Coordinate currentLocation, Coordinate displacement,
+                        HashSet<Coordinate> sites, Geometry geometry) throws
+            HaltCondition {
 
         logger.debug("Shoving. Origin: " + currentLocation + ". Displacement: " + displacement + ".");
-
+        //System.out.println("Shoving. Origin: " + currentLocation + ". " +
+        //         "Displacement: " + displacement + ".");
         if (isBaseCase.apply(currentLocation, displacement)) {
             return;
         }
 
-        CoordinateTuple tuple = helper.getNextTuple(currentLocation, displacement);
+        CoordinateTuple tuple = helper.getNextTuple(currentLocation,
+                displacement, geometry);
+        Coordinate nextDisplacement = tuple.getDisplacement();
+        Coordinate nextLocation = tuple.getOrigin();
+
+        // use the same displacement vector d each time
+        doShove(nextLocation, nextDisplacement, sites, geometry);
+
+        helper.swap(currentLocation, nextLocation);
+
+        sites.add(nextLocation);
+    }
+
+    public void doShove(Coordinate currentLocation, Coordinate displacement,
+                        HashSet<Coordinate> sites) throws
+            HaltCondition {
+
+        logger.debug("Shoving. Origin: " + currentLocation + ". Displacement: " + displacement + ".");
+        //System.out.println("Shoving. Origin: " + currentLocation + ". " +
+        //         "Displacement: " + displacement + ".");
+        if (isBaseCase.apply(currentLocation, displacement)) {
+            return;
+        }
+
+        CoordinateTuple tuple = helper.getNextTuple(currentLocation,
+                displacement);
         Coordinate nextDisplacement = tuple.getDisplacement();
         Coordinate nextLocation = tuple.getOrigin();
 

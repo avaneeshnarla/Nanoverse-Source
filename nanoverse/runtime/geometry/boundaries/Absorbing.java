@@ -64,6 +64,11 @@ public class Absorbing extends Boundary {
         return ret;
     }
 
+    public Coordinate[] apply(Coordinate c, Coordinate d) {
+        Coordinate[] cd = {c, d};
+        return cd;
+    }
+
     @Override
     public boolean isInfinite() {
         return false;

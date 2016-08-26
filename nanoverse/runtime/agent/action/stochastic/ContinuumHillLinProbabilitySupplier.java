@@ -61,8 +61,8 @@ public class ContinuumHillLinProbabilitySupplier extends ProbabilitySupplier {
 
     @Override
     public ContinuumHillLinProbabilitySupplier clone(Agent child) {
-        return new ContinuumHillLinProbabilitySupplier(substrateLookup,
-                valueLookup, child,
+        return new ContinuumHillLinProbabilitySupplier(
+                valueLookup, substrateLookup, child,
                 coefficient, offset, halfpoint, maximum);
     }
 
@@ -74,13 +74,13 @@ public class ContinuumHillLinProbabilitySupplier extends ProbabilitySupplier {
         probability = (offset + Math.pow(value, coefficient)/
                 (Math.pow(value, coefficient)+Math.pow(halfpoint,
                         coefficient))*(maximum-offset))*substrate;
-        System.out.println(//"Offset = "+offset+
+        /*System.out.println(//"Offset = "+offset+
                             //"\nCoefficient = "+coefficient+
                             //"\nHalfpoint = " +halfpoint+
                             //"\nMaximum = "+maximum+
-                "\nLayerValue = " + value +
+                "\nLayerValue = " + value /*+
                         "\nProbability = " + probability +
-                        "\nSubstrateValue = " + substrate);
+                        "\nSubstrateValue = " + substrate);*/
         logger.debug("p(x) = {}", probability);
         return probability;
     }

@@ -159,8 +159,21 @@ public class AgentUpdateManager {
 
         // Identify agents
         Agent p = content.get(pCoord);
+        /*try {
+            System.out.println(p.getName());
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println("null");
+        }*/
         Agent q = content.get(qCoord);
-
+        /*try {
+            System.out.println(q.getName());
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println("null");
+        }*/
         // Clear both sites
         content.remove(pCoord);
         content.remove(qCoord);

@@ -20,7 +20,13 @@
 
 package nanoverse.runtime.agent.action.displacement;
 
-import nanoverse.runtime.control.identifiers.*;
+import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.control.identifiers.Coordinate1D;
+import nanoverse.runtime.control.identifiers.Coordinate2D;
+import nanoverse.runtime.control.identifiers.Coordinate3D;
+import nanoverse.runtime.geometry.Geometry;
+import nanoverse.runtime.geometry.boundaries.TetrisBoundary;
+import nanoverse.runtime.geometry.shape.Rectangle;
 import nanoverse.runtime.structural.RangeMap;
 
 /**
@@ -32,12 +38,27 @@ import nanoverse.runtime.structural.RangeMap;
  */
 public class CoordinateTupleOptionMap extends RangeMap<CoordinateTuple> {
 
-    public CoordinateTupleOptionMap(Coordinate currentLocation, Coordinate currentDisplacement) {
+    public CoordinateTupleOptionMap(Coordinate currentLocation, Coordinate
+            currentDisplacement) {
         super();
         handleX(currentLocation, currentDisplacement);
         handleY(currentLocation, currentDisplacement);
         handleZ(currentLocation, currentDisplacement);
     }
+
+    public CoordinateTupleOptionMap(Coordinate currentLocation, Coordinate
+            currentDisplacement, Geometry geometry) {
+        super();
+        if (geometry.getBoundary() instanceof TetrisBoundary &&
+                geometry.getShape() instanceof Rectangle) {
+            handleX(currentLocation, currentDisplacement, geometry);
+        } else {
+            handleX(currentLocation, currentDisplacement);
+        }
+        handleY(currentLocation, currentDisplacement);
+        handleZ(currentLocation, currentDisplacement);
+    }
+
 
     // TODO: OMG this coordinate system is SO BAD
     private void handleX(Coordinate currentLocation, Coordinate currentDisplacement) {
@@ -73,6 +94,114 @@ public class CoordinateTupleOptionMap extends RangeMap<CoordinateTuple> {
             tuple = new CoordinateTuple(newDisplacement, newLocation);
         } else {
             throw new IllegalStateException();
+        }
+
+        add(tuple, magnitude);
+    }
+
+    private void handleX(Coordinate currentLocation, Coordinate
+            currentDisplacement, Geometry geometry) {
+        if (currentDisplacement.x() == 0) {
+            return;
+        }
+        //System.out.println("Well, we reached here!");
+        int width = geometry.getShape().getDimensions()[0];
+        double magnitude = Math.abs(currentDisplacement.x());
+        int signum = currentDisplacement.x() / Math.abs(currentDisplacement.x());
+
+        CoordinateTuple tuple;
+        //System.out.println(currentDisplacement.x()+" and "+width);
+        if (Math.abs(currentDisplacement.x()) == width - 1) {
+            int newLoc = currentLocation.x() - signum;
+            if (newLoc < 0) {
+                newLoc = width - 1;
+            } else if (newLoc >= width)
+                newLoc = newLoc - width;
+
+            if (currentDisplacement instanceof Coordinate2D) {
+                //System.out.println("Reached here too!");
+                Coordinate newDisplacement = new Coordinate2D(
+                        0,
+                        currentDisplacement.y(),
+                        currentDisplacement.flags());
+                Coordinate newLocation = new Coordinate2D(
+                        newLoc,
+                        currentLocation.y(),
+                        currentLocation.flags());
+                tuple = new CoordinateTuple(newDisplacement, newLocation);
+            } else if (currentDisplacement instanceof Coordinate3D) {
+                Coordinate newDisplacement = new Coordinate3D(
+                        0,
+                        currentDisplacement.y(),
+                        currentDisplacement.z(),
+                        currentDisplacement.flags());
+                Coordinate newLocation = new Coordinate3D(
+                        newLoc,
+                        currentLocation.y(),
+                        currentLocation.z(),
+                        currentLocation.flags());
+                tuple = new CoordinateTuple(newDisplacement, newLocation);
+            } else {
+                throw new IllegalStateException();
+            }
+        } else if (currentDisplacement.x() > width / 2) {
+            int newLoc = currentLocation.x() - signum;
+            if (newLoc < 0) {
+                newLoc = width - 1;
+            } else if (newLoc >= width)
+                newLoc = newLoc - width;
+
+            if (currentDisplacement instanceof Coordinate2D) {
+                Coordinate newDisplacement = new Coordinate2D(
+                        currentDisplacement.x() + signum,
+                        currentDisplacement.y(),
+                        currentDisplacement.flags());
+                Coordinate newLocation = new Coordinate2D(
+                        newLoc,
+                        currentLocation.y(),
+                        currentLocation.flags());
+                tuple = new CoordinateTuple(newDisplacement, newLocation);
+            } else if (currentDisplacement instanceof Coordinate3D) {
+                Coordinate newDisplacement = new Coordinate3D(
+                        currentDisplacement.x() + signum,
+                        currentDisplacement.y(),
+                        currentDisplacement.z(),
+                        currentDisplacement.flags());
+                Coordinate newLocation = new Coordinate3D(
+                        newLoc,
+                        currentLocation.y(),
+                        currentLocation.z(),
+                        currentLocation.flags());
+                tuple = new CoordinateTuple(newDisplacement, newLocation);
+            } else {
+                throw new IllegalStateException();
+            }
+        } else {
+            if (currentDisplacement instanceof Coordinate2D) {
+                Coordinate newDisplacement = new Coordinate2D(
+                        currentDisplacement.x() - signum,
+                        currentDisplacement.y(),
+                        currentDisplacement.flags());
+                Coordinate newLocation = new Coordinate2D(
+                        currentLocation.x() + signum,
+                        currentLocation.y(),
+                        currentLocation.flags());
+                tuple = new CoordinateTuple(newDisplacement, newLocation);
+            } else if (currentDisplacement instanceof Coordinate3D) {
+                Coordinate newDisplacement = new Coordinate3D(
+                        currentDisplacement.x() - signum,
+                        currentDisplacement.y(),
+                        currentDisplacement.z(),
+                        currentDisplacement.flags());
+                Coordinate newLocation = new Coordinate3D(
+                        currentLocation.x() + signum,
+                        currentLocation.y(),
+                        currentLocation.z(),
+                        currentLocation.flags());
+                tuple = new CoordinateTuple(newDisplacement, newLocation);
+            } else {
+                throw new IllegalStateException();
+            }
         }
 
         add(tuple, magnitude);

@@ -65,6 +65,10 @@ public class Periodic extends Boundary {
         return helper.wrapAll(c);
     }
 
+    public Coordinate[] apply(Coordinate c, Coordinate d) {
+        Coordinate[] cd = {c, d};
+        return cd;
+    }
     @Override
     public boolean isInfinite() {
         return false;

@@ -39,6 +39,8 @@ public abstract class Boundary {
 
     public abstract Coordinate apply(Coordinate c);
 
+    public abstract Coordinate[] apply(Coordinate c, Coordinate d);
+
     /**
      * If false, we are allowed to check against the size of the canonical site
      * array to determine the number of legal lattice sites. If false, we should

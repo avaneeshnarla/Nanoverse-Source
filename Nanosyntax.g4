@@ -36,7 +36,7 @@ primitive
     ;
 
 stringPrimitive: STRING;
-floatPrimitive: FLOAT;
+floatPrimitive: FLOAT | INTEGER;
 intPrimitive: INTEGER;
 boolPrimitive: BOOLEAN;
 

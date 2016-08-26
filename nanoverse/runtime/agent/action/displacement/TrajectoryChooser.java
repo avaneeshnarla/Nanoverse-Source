@@ -20,11 +20,10 @@
 
 package nanoverse.runtime.agent.action.displacement;
 
-import nanoverse.runtime.control.identifiers.*;
+import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.geometry.Geometry;
-import nanoverse.runtime.layers.cell.AgentLayer;
+import nanoverse.runtime.geometry.boundaries.TetrisBoundary;
 import nanoverse.runtime.structural.RangeMap;
-import org.slf4j.*;
 
 import java.util.Random;
 import java.util.function.BiFunction;
@@ -47,7 +46,21 @@ public class TrajectoryChooser {
         this.mapMaker = mapMaker;
     }
 
-    public CoordinateTuple getNextTuple(Coordinate currentLocation, Coordinate currentDisplacement) {
+    public CoordinateTuple getNextTuple(Coordinate currentLocation,
+                                        Coordinate currentDisplacement,
+                                        Geometry geometry) {
+        RangeMap<CoordinateTuple> chooser = mapMaker.apply(currentLocation, currentDisplacement);
+        if (geometry.getBoundary() instanceof TetrisBoundary) {
+            chooser = new CoordinateTupleOptionMap
+                    (currentLocation, currentDisplacement, geometry);
+        }
+        double weight = chooser.getTotalWeight();
+        double x = random.nextDouble() * weight;
+        return chooser.selectTarget(x);
+    }
+
+    public CoordinateTuple getNextTuple(Coordinate currentLocation,
+                                        Coordinate currentDisplacement) {
         RangeMap<CoordinateTuple> chooser = mapMaker.apply(currentLocation, currentDisplacement);
         double weight = chooser.getTotalWeight();
         double x = random.nextDouble() * weight;

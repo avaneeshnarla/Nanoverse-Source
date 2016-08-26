@@ -20,10 +20,13 @@
 
 package nanoverse.runtime.geometry.boundaries;
 
-import nanoverse.runtime.control.identifiers.*;
+import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.control.identifiers.Coordinate2D;
+import nanoverse.runtime.control.identifiers.Flags;
 import nanoverse.runtime.geometry.boundaries.helpers.WrapHelper2D;
 import nanoverse.runtime.geometry.lattice.Lattice;
-import nanoverse.runtime.geometry.shape.*;
+import nanoverse.runtime.geometry.shape.Rectangle;
+import nanoverse.runtime.geometry.shape.Shape;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
 /**
@@ -71,6 +74,18 @@ public class TetrisBoundary extends Boundary implements HaltBoundary {
         }
 
         return wrapped;
+    }
+
+    public Coordinate[] apply(Coordinate c, Coordinate d) {
+        if (Math.abs(c.x() - d.x()) > wrapper.getWidth() / 2)
+            if (c.x() > d.x()) {
+                c = new Coordinate2D(c.x() - wrapper.getWidth(), c.y(), c.flags());
+            }
+        if (d.x() > c.x()) {
+            d = new Coordinate2D(d.x() - wrapper.getWidth(), d.y(), d.flags());
+        }
+        Coordinate[] cd = {c, d};
+        return cd;
     }
 
     @Override

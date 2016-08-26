@@ -24,9 +24,11 @@ import nanoverse.runtime.control.halt.HaltCondition;
 import nanoverse.runtime.control.identifiers.Coordinate;
 import nanoverse.runtime.geometry.Geometry;
 import nanoverse.runtime.layers.cell.AgentLayer;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Random;
 import java.util.function.BiFunction;
 
 /**
@@ -83,8 +85,12 @@ public class ShortestPathShover {
             getDisplacement(origin, target, Geometry.APPLY_BOUNDARIES);
 
         logger.debug("Preparing to shove {} toward {}. Displacement: {}.", origin, target, displacement);
-
-        operationManager.doShove(origin, displacement, affectedSites);
+        /*if (displacement.x()>100 || displacement.y()>100){
+        System.out.println("Preparing to shove "+origin+" toward "+target+". " +
+                "Displacement:"+ displacement);}*/
+        operationManager.doShove(origin, displacement, affectedSites,
+                layer.getGeometry());
+        //operationManager.doShove(origin, displacement, affectedSites);
         return affectedSites;
     }
 }

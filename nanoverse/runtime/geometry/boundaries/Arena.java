@@ -20,7 +20,8 @@
 
 package nanoverse.runtime.geometry.boundaries;
 
-import nanoverse.runtime.control.identifiers.*;
+import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.control.identifiers.Flags;
 import nanoverse.runtime.geometry.lattice.Lattice;
 import nanoverse.runtime.geometry.shape.Shape;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
@@ -57,6 +58,10 @@ public class Arena extends Boundary {
         }
     }
 
+    public Coordinate[] apply(Coordinate c, Coordinate d) {
+        Coordinate[] cd = {c, d};
+        return cd;
+    }
     @Override
     public boolean isInfinite() {
         return true;
