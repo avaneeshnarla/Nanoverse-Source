@@ -63,6 +63,7 @@ public class AgentToOperatorHelper {
         BiConsumer<Integer, Double> consumer = (i, v) -> matrix.add(i, i, v);
         Function<RelationshipTuple, Double> expLookup = RelationshipTuple::getExp;
         apply(relationships, expLookup, consumer);
+        //System.out.println(matrix.toString());
         return matrix;
     }
 
@@ -80,7 +81,7 @@ public class AgentToOperatorHelper {
         BiConsumer<Integer, Double> consumer = (i, v) -> vector.add(i, v);
         Function<RelationshipTuple, Double> injLookup = RelationshipTuple::getInj;
         apply(relationships, injLookup, consumer);
-        //System.out.println("Source identified");
+        //System.out.println(vector.toString());
         return vector;
     }
 }

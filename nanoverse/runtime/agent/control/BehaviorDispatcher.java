@@ -64,6 +64,8 @@ public class BehaviorDispatcher {
         //System.out.println(behaviorName+" triggered");// at "+caller
         //.stringForm());
         Action behavior = behaviors.get(behaviorName);
+        /*try{System.out.println(caller.toString());}
+        catch (NullPointerException n) {System.out.println();}*/
         behavior.run(caller);
         //System.out.println();
     }

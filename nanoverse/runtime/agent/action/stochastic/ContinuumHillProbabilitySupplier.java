@@ -65,6 +65,7 @@ public class ContinuumHillProbabilitySupplier extends ProbabilitySupplier {
     public Double get() {
         double value = valueLookup.apply(cell);
         double probability;
+        //System.out.println(value);
         probability = offset + Math.pow(value, coefficient)/
                     (Math.pow(value, coefficient)+Math.pow(halfpoint,
                             coefficient))*(maximum-offset);

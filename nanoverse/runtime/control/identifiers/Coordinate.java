@@ -167,13 +167,13 @@ public abstract class Coordinate implements Comparable<Coordinate> {
      */
     @Override
     public int compareTo(Coordinate o) {
-        if (x > o.x) {
-            return 1;
-        } else if (x < o.x) {
-            return -1;
-        } else if (y > o.y) {
+        if (y > o.y) {
             return 1;
         } else if (y < o.y) {
+            return -1;
+        } else if (x > o.x) {
+            return 1;
+        } else if (x < o.x) {
             return -1;
         } else if (z > o.z) {
             return 1;

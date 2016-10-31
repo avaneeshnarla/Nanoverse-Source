@@ -47,12 +47,14 @@ public class CheckForThresholdOccupancy extends AgentProcess {
         if (gs != null) {
             gs.add(this.getID(), 1, 0.0D);
         }
+
     }
 
     @Override
     public void fire(StepState state) throws HaltCondition {
         int numOccupied = (int) getLayer().getViewer().getOccupiedSites().count();
-
+        if (state.getFrame()%20==0)
+            System.out.println(numOccupied);
         if (numOccupied >= thresholdCount) {
             throw new ThresholdOccupancyReachedEvent();
         }
@@ -71,7 +73,6 @@ public class CheckForThresholdOccupancy extends AgentProcess {
         if (toVal > 1.0 || toVal < 0) {
             throw new IllegalArgumentException("Illegal occupancy fraction " + toVal);
         }
-
         thresholdCount = (int) Math.floor(getLayer().getGeometry().getCanonicalSites().length * toVal);
     }
 }

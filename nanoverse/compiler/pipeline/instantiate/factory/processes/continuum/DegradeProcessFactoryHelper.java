@@ -17,35 +17,17 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+package nanoverse.compiler.pipeline.instantiate.factory.processes.continuum;
 
-package nanoverse.runtime.layers.continuum;
+import nanoverse.runtime.control.arguments.DoubleArgument;
+import nanoverse.runtime.geometry.set.CoordinateSet;
+import nanoverse.runtime.processes.BaseProcessArguments;
+import nanoverse.runtime.processes.continuum.DegradeProcess;
 
-import nanoverse.runtime.control.identifiers.Coordinate;
 
-/**
- * Created by dbborens on 12/30/14.
- */
-public class RelationshipTuple {
+public class DegradeProcessFactoryHelper {
 
-    private final Coordinate coordinate;
-    private final Reaction reaction;
-
-    public RelationshipTuple(Coordinate coordinate, Reaction reaction) {
-        this.coordinate = coordinate;
-        this.reaction = reaction;
+    public DegradeProcess build(BaseProcessArguments arguments, DoubleArgument valueArg, String layerId, CoordinateSet activeSites) {
+        return new DegradeProcess(arguments, valueArg, layerId, activeSites);
     }
-
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
-
-    public double getInj() {
-        return reaction.getInj();
-    }
-
-    public double getExp() {
-        //System.out.println(reaction.getExp());
-        return reaction.getExp();
-    }
-
 }

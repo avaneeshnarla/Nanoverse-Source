@@ -18,34 +18,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package nanoverse.runtime.layers.continuum;
+package nanoverse.compiler.pipeline.instantiate.loader.processes.continuum;
 
-import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.control.GeneralParameters;
+import nanoverse.runtime.geometry.Geometry;
+import nanoverse.runtime.geometry.set.*;
+import nanoverse.runtime.layers.LayerManager;
 
 /**
- * Created by dbborens on 12/30/14.
+ * Created by dbborens on 8/26/2015.
  */
-public class RelationshipTuple {
-
-    private final Coordinate coordinate;
-    private final Reaction reaction;
-
-    public RelationshipTuple(Coordinate coordinate, Reaction reaction) {
-        this.coordinate = coordinate;
-        this.reaction = reaction;
+public class DegradeProcessDefaults {
+    public CoordinateSet activeSites(LayerManager lm, GeneralParameters p) {
+        Geometry geom = lm.getAgentLayer().getGeometry();
+        return new CompleteSet(geom);
     }
-
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
-
-    public double getInj() {
-        return reaction.getInj();
-    }
-
-    public double getExp() {
-        //System.out.println(reaction.getExp());
-        return reaction.getExp();
-    }
-
 }

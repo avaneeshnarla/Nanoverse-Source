@@ -79,6 +79,8 @@ public class StochasticChoice extends Action {
                 " {}.", x, range, choice.getClass().getSimpleName());/*
         System.out.println("Selecting value "+x+" on interval [0, "+range+"]. "+
                 "Event chosen is "+choice.getClass().getSimpleName());*/
+        try{System.out.println(caller.toString());}
+            catch (NullPointerException n) {}
         choice.run(caller);
     }
 

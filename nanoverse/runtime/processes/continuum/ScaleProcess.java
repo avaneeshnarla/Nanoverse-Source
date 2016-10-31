@@ -20,8 +20,14 @@
 
 package nanoverse.runtime.processes.continuum;
 
+import nanoverse.runtime.control.arguments.DoubleArgument;
+import nanoverse.runtime.control.halt.HaltCondition;
+import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.geometry.set.CoordinateSet;
 import nanoverse.runtime.processes.BaseProcessArguments;
+import nanoverse.runtime.processes.StepState;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
+import no.uib.cipr.matrix.DenseVector;
 import no.uib.cipr.matrix.sparse.CompDiagMatrix;
 
 import java.util.function.Consumer;
@@ -32,7 +38,9 @@ import java.util.function.Consumer;
 public class ScaleProcess extends OperatorProcess {
 
     @FactoryTarget
-    public ScaleProcess(BaseProcessArguments arguments, CompDiagMatrix operator, Consumer<CompDiagMatrix> target) {
+    public ScaleProcess(BaseProcessArguments arguments, CompDiagMatrix
+            operator, Consumer<CompDiagMatrix> target) {
+
         super(arguments, operator, target);
     }
-}
+    }

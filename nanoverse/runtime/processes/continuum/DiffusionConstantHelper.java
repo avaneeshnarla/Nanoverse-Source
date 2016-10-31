@@ -49,7 +49,10 @@ public class DiffusionConstantHelper {
 
         neighborValue = baseConstant * ((double) dimensionality / (double) connectivity);
         diagonalValue = -1.0 * baseConstant * Math.pow(dimensionality, 2.0);
-
+        /*System.out.println("baseConstant = "+baseConstant+
+                            "\ndimensionality = "+dimensionality+
+                            "\nconnectivity = "+connectivity+
+                            "\ndiagonalValue = "+diagonalValue);*/
         if (diagonalValue < -1.0) {
             throw new IllegalArgumentException("Illegal diffusion constant: Total flux exceeds 100%.");
         }

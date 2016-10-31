@@ -60,6 +60,7 @@ public class ProcessClassSymbolTable extends ClassSymbolTable<NanoverseProcess> 
         compositeContinuumProcess(ret);
         diffuse(ret);
         scale(ret);
+        degrade(ret);
         inject(ret);
         release(ret);
         hold(ret);
@@ -110,6 +111,13 @@ public class ProcessClassSymbolTable extends ClassSymbolTable<NanoverseProcess> 
     private void inject(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
         Supplier<InstantiableSymbolTable> st = InjectionProcessInstSymbolTable::new;
         ret.put("Inject", st);
+    }
+
+    private void degrade(HashMap<String, Supplier<InstantiableSymbolTable>>
+                                ret) {
+        Supplier<InstantiableSymbolTable> st =
+                DegradeProcessInstSymbolTable::new;
+        ret.put("Degrade", st);
     }
 
     private void diffuse(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {

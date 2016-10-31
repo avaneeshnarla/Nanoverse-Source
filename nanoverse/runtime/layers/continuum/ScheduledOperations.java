@@ -125,6 +125,24 @@ public class ScheduledOperations {
     }
 
     /**
+     * Exponentiate everywhere
+     *
+     * @param b
+     */
+    public void exp(double b) {
+        if (!operators) {
+            throw new IllegalStateException("Operators are disabled but an exponentiation event is being scheduled");
+        }
+
+        //double current = operator.get(index, index);
+        //double next = current + b;
+        for (int index=0;index<operator.numColumns();index++)
+        {
+            operator.add(index, index, b);
+        }
+    }
+
+    /**
      * Zeros the row in the operator matrix associated with coordinate
      *
      * @param coordinate the coordinate whose row we want to zero out

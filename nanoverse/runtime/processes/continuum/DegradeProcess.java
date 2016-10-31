@@ -31,14 +31,14 @@ import no.uib.cipr.matrix.DenseVector;
 /**
  * Created by dbborens on 6/4/2015.
  */
-public class InjectionProcess extends ContinuumProcess {
+public class DegradeProcess extends ContinuumProcess {
 
     private final DoubleArgument valueArg;
     private final String layerId;
     private final CoordinateSet activeSites;
 
     @FactoryTarget
-    public InjectionProcess(BaseProcessArguments arguments,
+    public DegradeProcess(BaseProcessArguments arguments,
                             DoubleArgument valueArg, String layerId,
                             CoordinateSet activeSites) {
         super(arguments);
@@ -50,18 +50,20 @@ public class InjectionProcess extends ContinuumProcess {
     @Override
     public void fire(StepState state) throws HaltCondition {
         Coordinate[] canonicalSites = getLayerManager().getAgentLayer()
-            .getGeometry().getCanonicalSites();
+                .getGeometry().getCanonicalSites();
         DenseVector source = new DenseVector(canonicalSites.length);
-        //System.out.println("Inject called");
-        for (int i = 0; i < canonicalSites.length; i++) {
-            double value = valueArg.next();
-            if (activeSites.contains(canonicalSites[i])) {
-                source.set(i, value);
-            }
-        }
 
-        getLayerManager().getContinuumLayer(layerId).getScheduler().inject(source);
 
+        //for (int i = 0; i < canonicalSites.length; i++) {
+        //    double value = valueArg.next();
+        //    System.out.println(canonicalSites.length);
+            //if (activeSites.contains(canonicalSites[i])) {
+                getLayerManager().getContinuumLayer(layerId).getScheduler()
+                        .exp(valueArg.next());
+            //}
+        //}
+
+        //System.out.println("Degrade called");
     }
 
     @Override

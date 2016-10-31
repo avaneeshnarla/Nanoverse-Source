@@ -20,32 +20,40 @@
 
 package nanoverse.runtime.layers.continuum;
 
-import nanoverse.runtime.control.identifiers.Coordinate;
+import nanoverse.runtime.structural.annotations.FactoryTarget;
 
 /**
- * Created by dbborens on 12/30/14.
+ * Lightweight tuple or capturing a continuum reaction.
+ * <p>
+ * Created by dbborens on 1/8/15.
  */
-public class RelationshipTuple {
+public class ReactionLin {
 
-    private final Coordinate coordinate;
-    private final Reaction reaction;
+    private double inj;
+    private double exp;
+    private String id;
 
-    public RelationshipTuple(Coordinate coordinate, Reaction reaction) {
-        this.coordinate = coordinate;
-        this.reaction = reaction;
-    }
-
-    public Coordinate getCoordinate() {
-        return coordinate;
+    /**
+     * @param inj The magnitude of injection (source vector)
+     * @param exp The magnituude of exponentiation (matrix diagonal)
+     * @param id  The ID of the layer upon which the reaction occurs
+     */
+    @FactoryTarget
+    public ReactionLin(double inj, double exp, String id) {
+        this.inj = inj;
+        this.exp = exp;
+        this.id = id;
     }
 
     public double getInj() {
-        return reaction.getInj();
+        return inj;
     }
 
     public double getExp() {
-        //System.out.println(reaction.getExp());
-        return reaction.getExp();
+        return exp;
     }
 
+    public String getId() {
+        return id;
+    }
 }

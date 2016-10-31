@@ -52,6 +52,7 @@ public class Inject extends Action {
             .getContinuumLayer(layerId)
             .getScheduler()
             .inject(destination, delta);
+        System.out.println("inj called");
 
     }
 

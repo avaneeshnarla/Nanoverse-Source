@@ -49,12 +49,16 @@ public class ContinuumLayerScheduler {
         holdManager.resolve(() -> scheduledOperations.inject(vector));
     }
 
-    public void inject(Coordinate target, double delta) {
-        holdManager.resolve(() -> scheduledOperations.inject(target, delta));
-    }
-
     public void exp(Coordinate target, double b) {
         holdManager.resolve(() -> scheduledOperations.exp(target, b));
+    }
+
+    public void exp(double b) {
+        holdManager.resolve(() -> scheduledOperations.exp(b));
+    }
+
+    public void inject(Coordinate target, double delta) {
+        holdManager.resolve(() -> scheduledOperations.inject(target, delta));
     }
 
     public void setBoundaryCondition(Coordinate target, double b) {

@@ -49,13 +49,17 @@ public class ContinuumNormalizationHelper {
     public double normalize(Coordinate c, SystemState systemState) {
         Extrema extrema = systemState.getContinuumExtrema(continuumId);
         double rawValue = systemState.getContinuumValue(continuumId, c);
+        //if (c.x()==64 && c.y()%5==0)
+        //    System.out.println(c.y()+"\t"+rawValue);
+        System.out.println(c.toString()+" had value: "+rawValue);
         //System.out.println(continuumId);
         if (!observedValues.contains(rawValue)) {
-//            System.err.println(rawValue);
+        //    System.err.println(rawValue);
             observedValues.add(rawValue);
         }
         double centeredValue = rawValue - extrema.min();
         double range = extrema.max() - extrema.min();
+        //System.out.println(extrema.min());
         double normalized = 0;
         if (range!=0) {
              normalized = centeredValue / range;

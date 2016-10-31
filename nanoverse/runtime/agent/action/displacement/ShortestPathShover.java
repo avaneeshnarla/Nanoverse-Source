@@ -83,7 +83,7 @@ public class ShortestPathShover {
 
         Coordinate displacement = layer.getGeometry().
             getDisplacement(origin, target, Geometry.APPLY_BOUNDARIES);
-
+        //int b =5/0;
         logger.debug("Preparing to shove {} toward {}. Displacement: {}.", origin, target, displacement);
         /*if (displacement.x()>100 || displacement.y()>100){
         System.out.println("Preparing to shove "+origin+" toward "+target+". " +

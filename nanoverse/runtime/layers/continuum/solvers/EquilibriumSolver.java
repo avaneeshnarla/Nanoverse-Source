@@ -49,7 +49,15 @@ public class EquilibriumSolver extends ContinuumSolver {
     protected Vector doSolve() {
         Vector source = so.getSource();
         CompDiagMatrix operator = so.getOperator();
-
+        //System.out.print("Matrix "+operator.toString());
+        //System.out.print("Source "+source.toString());
+        /*for(int i1=0;i1<operator.numRows();i1++){
+            for (int i2=0;i2<operator.numColumns();i2++){
+                System.out.print(operator.get(i1,i2)+"\t");
+            }
+            System.out.println();
+        }*/
+        //System.out.println("Solver started");
         Vector template = content.getState().copy();
         Vector solution = steadyState.solve(source, operator, template);
         return solution;

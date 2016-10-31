@@ -59,7 +59,6 @@ public class ContinuumLayerSchedulerLoader extends Loader<ContinuumLayerSchedule
         HoldManagerLoader hmLoader = new HoldManagerLoader();
         HoldManager holdManager = hmLoader.instantiate(node, content, geometry, so);
         factory.setHoldManager(holdManager);
-
         return factory.build();
     }
 }

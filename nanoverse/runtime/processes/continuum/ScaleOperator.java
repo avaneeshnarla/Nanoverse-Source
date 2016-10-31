@@ -36,6 +36,7 @@ public class ScaleOperator extends CompDiagMatrix {
     public ScaleOperator(double coefficient, Geometry geometry) {
         this(geometry.getCanonicalSites().length);
         load(coefficient, geometry);
+        //System.out.println("Constructor created");
     }
 
     private ScaleOperator(int n) {
@@ -45,6 +46,7 @@ public class ScaleOperator extends CompDiagMatrix {
     private void load(double coefficient, Geometry geometry) {
         Coordinate[] sites = geometry.getCanonicalSites();
         int n = sites.length;
+        //System.out.println("Size:"+n+"\tCoefficient:"+coefficient);
         IntStream.range(0, n)
             .boxed()
             .forEach(j ->  add(j, j, coefficient));

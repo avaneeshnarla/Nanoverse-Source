@@ -25,6 +25,7 @@ import nanoverse.runtime.control.identifiers.Coordinate1D;
 import nanoverse.runtime.control.identifiers.Coordinate2D;
 import nanoverse.runtime.control.identifiers.Coordinate3D;
 import nanoverse.runtime.geometry.Geometry;
+import nanoverse.runtime.geometry.boundaries.PlaneRingHard;
 import nanoverse.runtime.geometry.boundaries.TetrisBoundary;
 import nanoverse.runtime.geometry.shape.Rectangle;
 import nanoverse.runtime.structural.RangeMap;
@@ -49,7 +50,8 @@ public class CoordinateTupleOptionMap extends RangeMap<CoordinateTuple> {
     public CoordinateTupleOptionMap(Coordinate currentLocation, Coordinate
             currentDisplacement, Geometry geometry) {
         super();
-        if (geometry.getBoundary() instanceof TetrisBoundary &&
+        if ((geometry.getBoundary() instanceof TetrisBoundary ||
+                geometry.getBoundary() instanceof PlaneRingHard) &&
                 geometry.getShape() instanceof Rectangle) {
             handleX(currentLocation, currentDisplacement, geometry);
         } else {
