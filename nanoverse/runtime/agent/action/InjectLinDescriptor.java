@@ -18,43 +18,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package nanoverse.runtime.layers.continuum;
+package nanoverse.runtime.agent.action;
 
+import nanoverse.runtime.agent.Agent;
+import nanoverse.runtime.control.arguments.DoubleArgument;
+import nanoverse.runtime.layers.LayerManager;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
+import java.util.function.Function;
+
 /**
- * Lightweight tuple or capturing a continuum reaction.
- * <p>
- * Created by dbborens on 1/8/15.
+ * Created by dbborens on 8/3/2015.
  */
-public class Reaction {
+public class InjectLinDescriptor extends ActionDescriptor<InjectLin> {
+    private final Function<Agent, InjectLin> constructor;
 
-    private double inj;
-    private double exp;
-    private String id;
+    @FactoryTarget(displayName = "InjectLin")
+    public InjectLinDescriptor(LayerManager layerManager,
+                               String layerId, String substrateId,
+                               DoubleArgument deltaArg) {
 
-    /**
-     * @param inj The magnitude of injection (source vector)
-     * @param exp The magnituude of exponentiation (matrix diagonal)
-     * @param id  The ID of the layer upon which the reaction occurs
-     */
-    @FactoryTarget
-    public Reaction(double inj, double exp, String id) {
-        this.inj = inj;
-        this.exp = exp;
-        this.id = id;
+        constructor = cell -> new InjectLin(cell, layerManager, layerId,
+                substrateId, deltaArg);
     }
 
-    public double getInj() {
-        return inj;
-    }
-
-    public double getExp() {
-        //int a=5/0;
-        return exp;
-    }
-
-    public String getId() {
-        return id;
+    @Override
+    protected Function<Agent, InjectLin> resolveConstructor() {
+        return constructor;
     }
 }

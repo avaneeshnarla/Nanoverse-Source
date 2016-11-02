@@ -21,9 +21,12 @@
 package nanoverse.runtime.processes.discrete.check;
 
 import nanoverse.runtime.control.arguments.DoubleArgument;
-import nanoverse.runtime.control.halt.*;
-import nanoverse.runtime.processes.*;
-import nanoverse.runtime.processes.discrete.*;
+import nanoverse.runtime.control.halt.HaltCondition;
+import nanoverse.runtime.control.halt.ThresholdOccupancyReachedEvent;
+import nanoverse.runtime.processes.BaseProcessArguments;
+import nanoverse.runtime.processes.StepState;
+import nanoverse.runtime.processes.discrete.AgentProcess;
+import nanoverse.runtime.processes.discrete.AgentProcessArguments;
 import nanoverse.runtime.processes.gillespie.GillespieState;
 import nanoverse.runtime.structural.annotations.FactoryTarget;
 
@@ -53,8 +56,8 @@ public class CheckForThresholdOccupancy extends AgentProcess {
     @Override
     public void fire(StepState state) throws HaltCondition {
         int numOccupied = (int) getLayer().getViewer().getOccupiedSites().count();
-        if (state.getFrame()%20==0)
-            System.out.println(numOccupied);
+        /*if (state.getFrame()%20==0)
+            System.out.println(numOccupied);*/
         if (numOccupied >= thresholdCount) {
             throw new ThresholdOccupancyReachedEvent();
         }

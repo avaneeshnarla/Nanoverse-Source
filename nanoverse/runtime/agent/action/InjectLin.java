@@ -29,15 +29,20 @@ import nanoverse.runtime.layers.LayerManager;
 /**
  * Created by dbborens on 6/3/15.
  */
-public class Inject extends Action {
+public class InjectLin extends Action {
 
     private final DoubleArgument deltaArg;
     private final String layerId;
+    private final String substrateId;
+    //private final Agent cell;
 
-    public Inject(Agent callback, LayerManager layerManager, String layerId, DoubleArgument deltaArg) {
+    public InjectLin(Agent callback, LayerManager layerManager, String layerId,
+                     String substrateId, DoubleArgument deltaArg) {
         super(callback, layerManager);
         this.deltaArg = deltaArg;
         this.layerId = layerId;
+        this.substrateId = substrateId;
+        //this.cell=callback;
     }
 
     @Override
@@ -47,11 +52,25 @@ public class Inject extends Action {
         }
 
         Coordinate destination = identity.getOwnLocation();
-        double delta = deltaArg.next();
+
+        double delta = deltaArg.next() * mapper.getLayerManager()
+                .getContinuumLayer(substrateId).getValueAt(destination);
+        //System.out.println(delta);
+        //System.out.println(layerId);
+        /*Supplier<Coordinate> supplier = () -> mapper.getLayerManager()
+                .getAgentLayer()
+                .getLookupManager()
+                .getAgentLocation(identity.getSelf());
+
+        double delta = deltaArg.next()*mapper.getLayerManager()
+                .getContinuumLayer(substrateId).getLinker().get(supplier);
+
+        System.out.println(mapper.getLayerManager()
+                .getContinuumLayer(substrateId).getLinker().get(supplier));*/
         mapper.getLayerManager()
-            .getContinuumLayer(layerId)
-            .getScheduler()
-            .inject(destination, delta);
+                .getContinuumLayer(layerId)
+                .getScheduler()
+                .inject(destination, delta);
         //System.out.println("inj called");
 
     }
@@ -61,7 +80,7 @@ public class Inject extends Action {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Inject inject = (Inject) o;
+        InjectLin inject = (InjectLin) o;
 
         if (!deltaArg.equals(inject.deltaArg)) return false;
         return layerId.equals(inject.layerId);
@@ -70,7 +89,8 @@ public class Inject extends Action {
 
     @Override
     public Action copy(Agent child) {
-        return new Inject(child, mapper.getLayerManager(), layerId, deltaArg);
+        return new InjectLin(child, mapper.getLayerManager(), layerId,
+                substrateId, deltaArg);
     }
 
     @Override

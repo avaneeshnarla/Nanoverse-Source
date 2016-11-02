@@ -18,43 +18,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package nanoverse.runtime.layers.continuum;
-
-import nanoverse.runtime.structural.annotations.FactoryTarget;
+package nanoverse.compiler.pipeline.instantiate.loader.layers.continuum;
 
 /**
- * Lightweight tuple or capturing a continuum reaction.
- * <p>
- * Created by dbborens on 1/8/15.
+ * Created by dbborens on 8/25/2015.
  */
-public class Reaction {
-
-    private double inj;
-    private double exp;
-    private String id;
-
-    /**
-     * @param inj The magnitude of injection (source vector)
-     * @param exp The magnituude of exponentiation (matrix diagonal)
-     * @param id  The ID of the layer upon which the reaction occurs
-     */
-    @FactoryTarget
-    public Reaction(double inj, double exp, String id) {
-        this.inj = inj;
-        this.exp = exp;
-        this.id = id;
+public class ReactionLinDefaults {
+    public Double exp() {
+        return 0.0;
     }
 
-    public double getInj() {
-        return inj;
-    }
-
-    public double getExp() {
-        //int a=5/0;
-        return exp;
-    }
-
-    public String getId() {
-        return id;
+    public Double inj() {
+        return 0.0;
     }
 }

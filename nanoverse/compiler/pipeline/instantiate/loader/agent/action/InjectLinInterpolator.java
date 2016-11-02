@@ -18,43 +18,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package nanoverse.runtime.layers.continuum;
+package nanoverse.compiler.pipeline.instantiate.loader.agent.action;
 
-import nanoverse.runtime.structural.annotations.FactoryTarget;
+import nanoverse.compiler.pipeline.instantiate.helpers.LoadHelper;
+import nanoverse.compiler.pipeline.translate.nodes.MapObjectNode;
+import nanoverse.runtime.control.arguments.DoubleArgument;
+
+import java.util.Random;
 
 /**
- * Lightweight tuple or capturing a continuum reaction.
- * <p>
- * Created by dbborens on 1/8/15.
+ * Created by dbborens on 8/24/2015.
  */
-public class Reaction {
+public class InjectLinInterpolator {
+    private final LoadHelper load;
 
-    private double inj;
-    private double exp;
-    private String id;
-
-    /**
-     * @param inj The magnitude of injection (source vector)
-     * @param exp The magnituude of exponentiation (matrix diagonal)
-     * @param id  The ID of the layer upon which the reaction occurs
-     */
-    @FactoryTarget
-    public Reaction(double inj, double exp, String id) {
-        this.inj = inj;
-        this.exp = exp;
-        this.id = id;
+    public InjectLinInterpolator() {
+        load = new LoadHelper();
     }
 
-    public double getInj() {
-        return inj;
+    public InjectLinInterpolator(LoadHelper load) {
+        this.load = load;
     }
 
-    public double getExp() {
-        //int a=5/0;
-        return exp;
+    public String layer(MapObjectNode node) {
+        return load.aString(node, "layer");
     }
 
-    public String getId() {
-        return id;
+    public String substrate(MapObjectNode node) {
+        return load.aString(node, "substrate");
+    }
+
+    public DoubleArgument delta(MapObjectNode node, Random random) {
+        return load.aDoubleArgument(node, "delta", random);
     }
 }

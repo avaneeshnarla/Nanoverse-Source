@@ -17,44 +17,41 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+package nanoverse.compiler.pipeline.instantiate.factory.layers.continuum;
 
-package nanoverse.runtime.layers.continuum;
+import nanoverse.compiler.pipeline.instantiate.factory.Factory;
+import nanoverse.runtime.layers.continuum.ReactionLin;
 
-import nanoverse.runtime.structural.annotations.FactoryTarget;
+public class ReactionLinFactory implements Factory<ReactionLin> {
 
-/**
- * Lightweight tuple or capturing a continuum reaction.
- * <p>
- * Created by dbborens on 1/8/15.
- */
-public class Reaction {
+    private final ReactionLinFactoryHelper helper;
 
     private double inj;
     private double exp;
     private String id;
 
-    /**
-     * @param inj The magnitude of injection (source vector)
-     * @param exp The magnituude of exponentiation (matrix diagonal)
-     * @param id  The ID of the layer upon which the reaction occurs
-     */
-    @FactoryTarget
-    public Reaction(double inj, double exp, String id) {
+    public ReactionLinFactory() {
+        helper = new ReactionLinFactoryHelper();
+    }
+
+    public ReactionLinFactory(ReactionLinFactoryHelper helper) {
+        this.helper = helper;
+    }
+
+    public void setInj(double inj) {
         this.inj = inj;
+    }
+
+    public void setExp(double exp) {
         this.exp = exp;
+    }
+
+    public void setId(String id) {
         this.id = id;
     }
 
-    public double getInj() {
-        return inj;
-    }
-
-    public double getExp() {
-        //int a=5/0;
-        return exp;
-    }
-
-    public String getId() {
-        return id;
+    @Override
+    public ReactionLin build() {
+        return helper.build(inj, exp, id);
     }
 }

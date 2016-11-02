@@ -21,7 +21,9 @@
 package nanoverse.compiler.pipeline.translate.symbol.agent.action;
 
 import nanoverse.compiler.pipeline.instantiate.loader.agent.action.CompoundActionLoader;
-import nanoverse.compiler.pipeline.translate.symbol.*;
+import nanoverse.compiler.pipeline.translate.symbol.ClassSymbolTable;
+import nanoverse.compiler.pipeline.translate.symbol.InstantiableSymbolTable;
+import nanoverse.compiler.pipeline.translate.symbol.ListSymbolTable;
 import nanoverse.runtime.agent.action.ActionDescriptor;
 
 import java.util.HashMap;
@@ -55,6 +57,7 @@ public class ActionClassSymbolTable extends ClassSymbolTable<ActionDescriptor> {
         stochasticChoice(ret);
         swap(ret);
         inject(ret);
+        injectlin(ret);
         thresholdDo(ret);
         nullAction(ret);
         return ret;
@@ -82,6 +85,13 @@ public class ActionClassSymbolTable extends ClassSymbolTable<ActionDescriptor> {
     private void inject(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
         Supplier<InstantiableSymbolTable> supplier = InjectInstSymbolTable::new;
         ret.put("Inject", supplier);
+    }
+
+    private void injectlin(HashMap<String, Supplier<InstantiableSymbolTable>>
+                                   ret) {
+        Supplier<InstantiableSymbolTable> supplier =
+                InjectLinInstSymbolTable::new;
+        ret.put("InjectLin", supplier);
     }
 
     private void swap(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
