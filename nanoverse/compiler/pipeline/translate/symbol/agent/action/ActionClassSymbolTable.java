@@ -58,6 +58,7 @@ public class ActionClassSymbolTable extends ClassSymbolTable<ActionDescriptor> {
         swap(ret);
         inject(ret);
         injectlin(ret);
+        injectlinsurround(ret);
         thresholdDo(ret);
         nullAction(ret);
         return ret;
@@ -92,6 +93,14 @@ public class ActionClassSymbolTable extends ClassSymbolTable<ActionDescriptor> {
         Supplier<InstantiableSymbolTable> supplier =
                 InjectLinInstSymbolTable::new;
         ret.put("InjectLin", supplier);
+    }
+
+    private void injectlinsurround(HashMap<String,
+            Supplier<InstantiableSymbolTable>>
+                                           ret) {
+        Supplier<InstantiableSymbolTable> supplier =
+                InjectLinSurroundInstSymbolTable::new;
+        ret.put("InjectLinSurround", supplier);
     }
 
     private void swap(HashMap<String, Supplier<InstantiableSymbolTable>> ret) {
