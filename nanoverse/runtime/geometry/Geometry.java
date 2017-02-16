@@ -159,6 +159,22 @@ public class Geometry {
         }
     }
 
+    public Coordinate[] getBox(Coordinate coord, int mode) {
+
+        Coordinate[] neighbors = lattice.getBox(coord);
+        if (mode == APPLY_BOUNDARIES) {
+            return applyBoundaries(neighbors);
+        } else if (mode == FLAG_BOUNDARIES) {
+            return setBoundaryFlag(neighbors);
+        } else if (mode == EXCLUDE_BOUNDARIES) {
+            return excludeBoundaries(neighbors);
+        } else if (mode == IGNORE_BOUNDARIES) {
+            return neighbors;
+        } else {
+            throw new IllegalArgumentException("Unrecognized mode " + mode + ".");
+        }
+    }
+
     private Coordinate[] setBoundaryFlag(Coordinate[] coords) {
         ArrayList<Coordinate> applied = new ArrayList<>(coords.length);
 

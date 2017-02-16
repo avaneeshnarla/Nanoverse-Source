@@ -86,6 +86,25 @@ public class RectangularLattice extends Lattice {
         return ret;
     }
 
+    public Coordinate[] getBox(Coordinate coord) {
+        // De-index coordinate.
+        int x0 = coord.x();
+        int y0 = coord.y();
+
+        // All other cases
+        Coordinate[] ret = new Coordinate[8];
+
+            ret[0] = new Coordinate2D(x0 + 1, y0, 0);
+            ret[1] = new Coordinate2D(x0 + 1, y0 - 1, 0);
+            ret[2] = new Coordinate2D(x0 + 1, y0 + 1, 0);
+            ret[3] = new Coordinate2D(x0, y0 - 1, 0);
+        ret[4] = new Coordinate2D(x0, y0 + 1, 0);
+        ret[5] = new Coordinate2D(x0 - 1, y0 + 1, 0);
+        ret[6] = new Coordinate2D(x0 - 1, y0 - 1, 0);
+        ret[7] = new Coordinate2D(x0 - 1, y0, 0);
+        return ret;
+    }
+
     @Override
     public Coordinate rel2abs(Coordinate coord, Coordinate displacement) {
         if (!displacement.hasFlag(Flags.PLANAR)) {

@@ -49,8 +49,8 @@ public class ContinuumNormalizationHelper {
     public double normalize(Coordinate c, SystemState systemState) {
         Extrema extrema = systemState.getContinuumExtrema(continuumId);
         double rawValue = systemState.getContinuumValue(continuumId, c);
-        if (c.y() == 127)
-            System.out.println(rawValue);
+        if (c.y() == 128)
+            //System.out.println(rawValue);
         //System.out.println(c.toString()+" "+rawValue);
         //System.out.println(continuumId);
         if (!observedValues.contains(rawValue)) {

@@ -69,7 +69,7 @@ public class InjectLinSurround extends Action {
         System.out.println(mapper.getLayerManager()
                 .getContinuumLayer(substrateId).getLinker().get(supplier));*/
         Coordinate[] neighbors = mapper.getLayerManager().getContinuumLayer(layerId).getGeometry()
-                .getNeighbors(destination, 0);
+                .getBox(destination, 0);
         for (int i = 0; i < neighbors.length; i++) {
             mapper.getLayerManager()
                     .getContinuumLayer(layerId)

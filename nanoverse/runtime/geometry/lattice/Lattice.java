@@ -49,6 +49,8 @@ public abstract class Lattice {
         return getAnnulus(coord, 1);
     }
 
+    public abstract Coordinate[] getBox(Coordinate coord);
+
     /**
      * Returns the annulus of radius r around the specified coordinate,
      * assuming infinite boundary conditions.

@@ -65,6 +65,21 @@ public class LinearLattice extends Lattice {
         return new Coordinate[]{northern, southern};
     }
 
+    public Coordinate[] getBox(Coordinate coord) {
+
+        int x0 = coord.x();
+
+        if (x0 != 0) {
+            throw new IllegalStateException("Linear lattice expects strictly zero x  values.");
+        }
+
+        int y0 = coord.y();
+        Coordinate northern = new Coordinate1D(y0 + 1, 0);
+        Coordinate southern = new Coordinate1D(y0 - 1, 0);
+
+        return new Coordinate[]{northern, southern};
+    }
+
     @Override
     public Coordinate rel2abs(Coordinate coord, Coordinate displacement) {
 

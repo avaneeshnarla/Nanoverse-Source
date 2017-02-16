@@ -42,6 +42,29 @@ public class CubicLattice extends Lattice {
         return 3;
     }
 
+    @Override
+    public Coordinate[] getBox(Coordinate coord)
+    {// De-index coordinate.
+        int x0 = coord.x();
+        int y0 = coord.y();
+        int z0 = coord.z();
+
+        // All other cases
+        Coordinate[] ret = new Coordinate[26];
+
+        for(int i=-1; i<2;i++) {
+            ret[(i+1)*8+0] = new Coordinate3D(x0 + 1, y0, z0 +i, 0);
+            ret[(i+1)*8+1] = new Coordinate3D(x0 + 1, y0 - 1, z0 +i, 0);
+            ret[(i+1)*8+2] = new Coordinate3D(x0 + 1, y0 + 1, z0 +i, 0);
+            ret[(i+1)*8+3] = new Coordinate3D(x0, y0 - 1, z0 +i, 0);
+            ret[(i+1)*8+4] = new Coordinate3D(x0, y0 + 1, z0 +i, 0);
+            ret[(i+1)*8+5] = new Coordinate3D(x0 - 1, y0 + 1, z0 +i, 0);
+            ret[(i+1)*8+6] = new Coordinate3D(x0 - 1, y0 - 1, z0 +i, 0);
+            ret[(i+1)*8+7] = new Coordinate3D(x0 - 1, y0, z0 +i, 0);
+        }
+        ret[25] = new Coordinate3D(x0, y0, z0 +1, 0);
+        ret[25] = new Coordinate3D(x0, y0, z0 -1, 0);
+        return ret;}
 
     @Override
     public Coordinate[] getAnnulus(Coordinate coord, int r) {

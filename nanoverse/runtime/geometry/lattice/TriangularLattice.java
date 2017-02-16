@@ -42,7 +42,12 @@ public class TriangularLattice extends Lattice {
         return 2;
     }
 
-
+    @Override
+    public Coordinate[] getBox(Coordinate coord)
+    {
+        throw new IllegalStateException("Box not implemented for triangular " +
+                "lattice yet.");
+    }
     @Override
     public Coordinate[] getAnnulus(Coordinate coord, int r) {
 
